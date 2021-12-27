@@ -1,4 +1,4 @@
-package com.example.demo.domain.entity;
+package com.pitter.domain.entity;
 
 
 import lombok.Getter;
