@@ -21,8 +21,8 @@ public class Member {
 
     //TODO: @Email or @Pattern 으로 Validation Check!
     @NotBlank(message = "이메일은 필수 입력 값입니다.")
-//    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$",
-//             message = "올바르지 않은 이메일 형식입니다.")
+    @Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",
+             message = "올바르지 않은 이메일 형식입니다.")
     @Column(unique = true)
     private String email;
 
