@@ -5,21 +5,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class MemberJpaRepositoryTest {
+public class MemberRepositoryTest {
     
     @Autowired private MemberRepository memberRepository;
 
@@ -27,7 +25,7 @@ public class MemberJpaRepositoryTest {
 
     private String test_nickName = "tester";
     private String test_email = "tester@pitter.com";
-    private String test_password = "Wjdekdns1!";
+    private String test_password = "Eptmxm1!";
 
     @Test
     public void save_success() throws Exception {
