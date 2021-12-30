@@ -1,42 +1,13 @@
 package com.pitter.domain.repository;
 
 import com.pitter.domain.entity.Member;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.EntityManager;
-import java.util.List;
+import java.util.Optional;
 
-@Repository
-@RequiredArgsConstructor
-public class MemberRepository {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    private final EntityManager entityManager;
+    Optional<Member> findByNickName(String nickName);
 
-    public Long save(Member member) {
-        entityManager.persist(member);
-        return member.getId();
-    }
-
-    public Member findById(Long id) {
-        return entityManager.find(Member.class, id);
-    }
-
-    public List<Member> findAll() {
-        return entityManager.createQuery("select m from Member m", Member.class)
-                .getResultList();
-    }
-
-    public Member findByNickName(String nickName) {
-        return entityManager.createQuery("select m from Member m where m.nickName = :nickName", Member.class)
-                .setParameter("nickName", nickName)
-                .getSingleResult();
-    }
-
-    public Member findByEmail(String email) {
-        return entityManager.createQuery("select m from Member m where m.email = :email", Member.class)
-                .setParameter("email", email)
-                .getSingleResult();
-    }
-
+    Optional<Member> findByEmail(String email);
 }

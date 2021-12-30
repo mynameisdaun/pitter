@@ -12,13 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class MemberRepositoryTest {
+public class MemberJpaRepositoryTest {
     
     @Autowired private MemberRepository memberRepository;
 
@@ -34,11 +35,11 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, test_password);
 
         //when
-        Long savedId = memberRepository.save(member);
+        Member savedMember = memberRepository.save(member);
         entityManager.flush();
 
         //then
-        assertNotNull(savedId);
+        assertNotNull(savedMember);
     }
 
     @Test(expected = ConstraintViolationException.class)
@@ -151,7 +152,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, "daun9870!gmail.com", test_password);
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -164,7 +165,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, null);
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -177,7 +178,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, "");
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -190,7 +191,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, " ");
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -203,7 +204,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, "wjdekdns1!");
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -216,7 +217,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, "Wjdekdns1");
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -229,7 +230,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, "Wjdekdns!");
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -242,7 +243,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, "Wjdek1!");
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -255,7 +256,7 @@ public class MemberRepositoryTest {
         Member member = Member.createMember(test_nickName, test_email, "Wjdekdns!123asd123sasx");
 
         //when
-        Long savedId = memberRepository.save(member);
+        memberRepository.save(member);
         entityManager.flush();
 
         //then
@@ -266,11 +267,11 @@ public class MemberRepositoryTest {
     public void findById_success() throws Exception {
         //given
         Member member = Member.createMember(test_nickName,test_email,test_password);
-        Long savedId = memberRepository.save(member);
+        Member savedMember = memberRepository.save(member);
         entityManager.flush();
 
         //when
-        Member findMember = memberRepository.findById(savedId);
+        Member findMember = memberRepository.findById(savedMember.getId()).orElseThrow(() -> new IllegalArgumentException("no such data"));
 
         //then
         System.out.println(findMember.toString());
@@ -281,16 +282,16 @@ public class MemberRepositoryTest {
         assertEquals(test_password, findMember.getPassword());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void findById_fail_none_exist_id () {
         //given
         Member member = Member.createMember(test_nickName,test_email,test_password);
-        Long savedId = memberRepository.save(member);
+        Member savedMember = memberRepository.save(member);
         entityManager.flush();
 
         //when
-        Long nonExistId = savedId+100000;
-        Member findMember = memberRepository.findById(nonExistId);
+        Long nonExistId = savedMember.getId()+100000;
+        Member findMember = memberRepository.findById(nonExistId).orElseThrow(() -> new IllegalArgumentException("no such data"));
 
         //then
         assertNull(findMember);
@@ -329,11 +330,11 @@ public class MemberRepositoryTest {
     public void findByNickName_success() throws Exception {
         //given
         Member member = Member.createMember(test_nickName,test_email,test_password);
-        memberRepository.save(member);
+        Member savedMember = memberRepository.save(member);
         entityManager.flush();
 
         //when
-        Member findMember = memberRepository.findByNickName(test_nickName);
+        Member findMember = memberRepository.findByNickName(savedMember.getNickName()).orElseThrow(() -> new IllegalArgumentException("no such data"));
 
         //then
         assertNotNull(findMember);
@@ -343,13 +344,13 @@ public class MemberRepositoryTest {
         assertEquals(test_password, findMember.getPassword());
     }
 
-    @Test(expected = EmptyResultDataAccessException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void findByNickName_success_noneExistNickName() throws Exception {
         //given
         String noneExistNickName = "NONE";
 
         //when
-        Member findMember = memberRepository.findByNickName(noneExistNickName);
+        Member findMember = memberRepository.findByNickName(noneExistNickName).orElseThrow(() -> new IllegalArgumentException("no such data"));
 
         //then
         assertNull(findMember);
@@ -362,7 +363,7 @@ public class MemberRepositoryTest {
         memberRepository.save(member);
         entityManager.flush();
         //when
-        Member findMember = memberRepository.findByEmail(test_email);
+        Member findMember = memberRepository.findByEmail(test_email).orElseThrow(() -> new IllegalArgumentException("no such data"));;
 
 
         //then
@@ -373,13 +374,13 @@ public class MemberRepositoryTest {
         assertEquals(test_password, findMember.getPassword());
     }
 
-    @Test(expected = EmptyResultDataAccessException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void findByEmail_fail_NoneExistEmail() throws Exception {
         //given
         String nonExistEmail = "noexistTest@gmail.com";
 
         //when
-        Member findMember = memberRepository.findByEmail(nonExistEmail);
+        Member findMember = memberRepository.findByEmail(nonExistEmail).orElseThrow(() -> new IllegalArgumentException("no such data"));
 
         //then
         assertNull(findMember);
