@@ -1,18 +1,18 @@
 package com.pitter.domain.entity;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
+import lombok.AccessLevel;
 import lombok.Getter;
-import org.checkerframework.common.aliasing.qual.LeakedToResult;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import java.util.Arrays;
 
-@Entity @Getter
-public class Member {
+@Entity @Getter @ToString(callSuper = true)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Member extends BaseEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id")
@@ -43,18 +43,6 @@ public class Member {
         this.password = password;
     }
 
-    protected Member() { }
-
     public static Member createMember(String nickName, String email, String password) { return new Member(nickName, email, password); }
 
-    @Override
-    public String toString() {
-        return "Member{" +
-                "id=" + id +
-                ", nickName='" + nickName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", bodyProfile=" + bodyProfile +
-                '}';
-    }
 }

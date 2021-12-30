@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 
@@ -274,6 +273,7 @@ public class MemberRepositoryTest {
         Member findMember = memberRepository.findById(savedId);
 
         //then
+        System.out.println(findMember.toString());
         assertNotNull(findMember);
         assertNotNull(findMember.getId());
         assertEquals(test_nickName, findMember.getNickName());
@@ -374,7 +374,7 @@ public class MemberRepositoryTest {
     }
 
     @Test(expected = EmptyResultDataAccessException.class)
-    public void findByEmail_failnoneExistEmail() throws Exception {
+    public void findByEmail_fail_NoneExistEmail() throws Exception {
         //given
         String nonExistEmail = "noexistTest@gmail.com";
 
