@@ -1,27 +1,41 @@
 package com.pitter.domain.entity;
 
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Embeddable
-@Getter
+@Embeddable @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class BodyProfile {
 
-    @Column(columnDefinition = "Integer default 90")
     private double currentWeight;
 
-    @Column(columnDefinition = "Integer default 80")
     private double targetWeight;
 
-    @Column(columnDefinition = "Integer default 175")
     private double height;
 
-    @Column(columnDefinition = "Integer default 35")
     private double bmi;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date checkAt;
+    private LocalDateTime checkAt;
+
+    private BodyProfile(double currentWeight, double targetWeight, double height, LocalDateTime checkAt) {
+        this.currentWeight = currentWeight;
+        this.targetWeight = targetWeight;
+        this.height = height;
+        this.bmi = (Math.round((currentWeight / ((height/100)*(height/100))) * 100)) / 100.0;
+        this.checkAt = checkAt;
+    }
+
+    public static BodyProfile createBodyProfile(double currentWeight, double targetWeight, double height, LocalDateTime checkAt) {
+        return new BodyProfile(currentWeight, targetWeight, height, checkAt);
+    }
+
 
 }

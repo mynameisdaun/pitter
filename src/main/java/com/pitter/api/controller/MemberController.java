@@ -1,7 +1,7 @@
 package com.pitter.api.controller;
 
-import com.pitter.api.dto.MemberJoinRequestDto;
-import com.pitter.api.dto.MemberJoinResponseDto;
+import com.pitter.api.dto.MemberJoinRequest;
+import com.pitter.api.dto.MemberJoinResponse;
 import com.pitter.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +17,9 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/members")
-    public MemberJoinResponseDto join(@Valid @RequestBody MemberJoinRequestDto memberJoinRequestDto) {
-        Long savedId = memberService.join(memberJoinRequestDto.toMemberEntity());
-        return new MemberJoinResponseDto(savedId, memberJoinRequestDto.getNickName(), memberJoinRequestDto.getEmail());
+    public MemberJoinResponse join(@Valid @RequestBody MemberJoinRequest memberJoinRequest) {
+        Long savedId = memberService.join(memberJoinRequest.toMemberEntity());
+        return new MemberJoinResponse(savedId, memberJoinRequest.getNickName(), memberJoinRequest.getEmail());
     }
 
 

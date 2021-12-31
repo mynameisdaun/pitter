@@ -1,6 +1,5 @@
 package com.pitter.service;
 
-import com.pitter.api.dto.MemberJoinRequestDto;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.repository.MemberRepository;
 import com.pitter.exception.DuplicateMemberException;

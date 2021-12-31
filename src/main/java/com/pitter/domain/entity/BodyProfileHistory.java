@@ -1,13 +1,18 @@
 package com.pitter.domain.entity;
 
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-public class BodyProfileHistory {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(callSuper = true)
+public class BodyProfileHistory extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +25,15 @@ public class BodyProfileHistory {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public static BodyProfileHistory createBodyProfileHistory(BodyProfile bodyProfile, Member member) {
+        return new BodyProfileHistory(bodyProfile, member);
+    }
+
+    private BodyProfileHistory(BodyProfile bodyProfile, Member member) {
+        this.bodyProfile=bodyProfile;
+        this.member=member;
+    }
 
 
 }
