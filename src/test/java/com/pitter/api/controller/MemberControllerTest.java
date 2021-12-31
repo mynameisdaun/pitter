@@ -56,7 +56,7 @@ public class MemberControllerTest {
     }
     
     @Test
-    public void join_fail_nickName_null() throws Exception {
+    public void join_fail_Invalid_MemberRequestDto_nickName_null () throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("email", "test1@pitter.com");
@@ -68,11 +68,42 @@ public class MemberControllerTest {
                 .content(objectMapper.writeValueAsString(requestBody)))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
-        //then
     }
 
     @Test
-    public void join_fail_nickName_length_should_be_GreaterOrEqualThan_2() throws Exception {
+    public void join_fail_Invalid_MemberRequestDto_nickName_empty () throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "");
+        requestBody.put("email", "test1@pitter.com");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_Invalid_MemberRequestDto_nickName_whitespace () throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", " ");
+        requestBody.put("email", "test1@pitter.com");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_Invalid_MemberRequestDto_nickName_should_be_greaterOrEquals_than_2() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("nickName", "t");
@@ -85,14 +116,13 @@ public class MemberControllerTest {
                 .content(objectMapper.writeValueAsString(requestBody)))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
-        //then
     }
 
     @Test
-    public void join_fail_nickName_length_should_be_lt_2() throws Exception {
+    public void join_fail_Invalid_MemberRequestDto_nickName_should_be_LessOrEquals_than_10() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
-        requestBody.put("nickName", "t");
+        requestBody.put("nickName", "testertester12");
         requestBody.put("email", "test1@pitter.com");
         requestBody.put("password", "xpTmxm1!");
 
@@ -102,7 +132,212 @@ public class MemberControllerTest {
                 .content(objectMapper.writeValueAsString(requestBody)))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
-        //then
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_email_null() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_email_empty() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_email_whitespace() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", " ");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_email_no_special_character() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester!gmail.com");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_email_no_companyname() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_email_no_companyName_dot() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@test");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_email_no_account_email() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "@test.com");
+        requestBody.put("password", "xpTmxm1!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_password_null() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@pitter.com");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_password_empty() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@pitter.com");
+        requestBody.put("password", "");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_password_whitespace() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@pitter.com");
+        requestBody.put("password", " ");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_password_no_upperCase() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@pitter.com");
+        requestBody.put("password", "xptmxm12!");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_password_no_special_Character() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@pitter.com");
+        requestBody.put("password", "xptmxm123");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    public void join_fail_invalid_MemberRequestDto_password_no_number() throws Exception {
+        //given
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("nickName", "tester");
+        requestBody.put("email", "tester@pitter.com");
+        requestBody.put("password", "xptmxm!@!@a");
+
+        //when
+        mockMvc.perform(post("/members")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andDo(print());
     }
 
 
