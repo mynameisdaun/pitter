@@ -17,11 +17,11 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Long join (@Valid MemberJoinRequestDto memberJoinRequestDto) {
-        if(isDuplicateEmail(memberJoinRequestDto.getEmail()) || isDuplicateNickName(memberJoinRequestDto.getNickName())) {
+    public Long join (Member member) {
+        if(isDuplicateEmail(member.getEmail()) || isDuplicateNickName(member.getNickName())) {
             throw new DuplicateMemberException("이미 존재하는 회원입니다.");
         }
-        Member savedMember = memberRepository.save(memberJoinRequestDto.toMemberEntity());
+        Member savedMember = memberRepository.save(member);
         return savedMember.getId();
     }
 

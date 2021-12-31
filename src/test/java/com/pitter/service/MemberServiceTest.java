@@ -1,6 +1,7 @@
 package com.pitter.service;
 
 import com.pitter.api.dto.MemberJoinRequestDto;
+import com.pitter.domain.entity.Member;
 import com.pitter.domain.repository.MemberRepository;
 import com.pitter.exception.DuplicateMemberException;
 import org.junit.Test;
@@ -29,10 +30,10 @@ public class MemberServiceTest {
     @Test
     public void join_success() throws Exception {
         //given
-        MemberJoinRequestDto memberJoinRequestDto = new MemberJoinRequestDto(test_nickName,test_email,test_password);
+        Member member = Member.createMember(test_nickName, test_email, test_password);
 
         //when
-        Long savedId = memberService.join(memberJoinRequestDto);
+        Long savedId = memberService.join(member);
         
         //then
         assertThat(savedId).isNotNull();
@@ -41,11 +42,12 @@ public class MemberServiceTest {
     @Test(expected = DuplicateMemberException.class)
     public void join_fail_Duplicate_Email() throws Exception {
         //given
-        MemberJoinRequestDto memberJoinRequestDto = new MemberJoinRequestDto(test_nickName,test_email,test_password);
-        memberRepository.save(memberJoinRequestDto.toMemberEntity());
+        Member member = Member.createMember(test_nickName, test_email, test_password);
+        memberRepository.save(member);
+        Member duplicateMember = Member.createMember("notDuplicated", test_email, test_password);
                 
         //when
-        memberService.join(new MemberJoinRequestDto("notDuplicated", test_email, test_password));
+        memberService.join(duplicateMember);
                 
         //then
         fail("should throw DuplicateMemberException");
@@ -54,11 +56,12 @@ public class MemberServiceTest {
     @Test(expected = DuplicateMemberException.class)
     public void join_fail_Duplicate_NickName() throws Exception {
         //given
-        MemberJoinRequestDto memberJoinRequestDto = new MemberJoinRequestDto(test_nickName,test_email,test_password);
-        memberRepository.save(memberJoinRequestDto.toMemberEntity());
+        Member member = Member.createMember(test_nickName, test_email, test_password);
+        memberRepository.save(member);
+        Member duplicateMember = Member.createMember(test_nickName, "notduplicated@pitter.com", test_password);
 
-        //when
-        memberService.join(new MemberJoinRequestDto(test_nickName, "notduplicated@pitter.com", test_password));
+        //when;
+        memberService.join(duplicateMember);
 
         //then
         fail("should throw DuplicateMemberException");
@@ -79,8 +82,8 @@ public class MemberServiceTest {
     @Test
     public void isDuplicateEmail_success_Duplicated() throws Exception {
         //given
-        MemberJoinRequestDto memberJoinRequestDto = new MemberJoinRequestDto(test_nickName,test_email,test_password);
-        memberRepository.save(memberJoinRequestDto.toMemberEntity());
+        Member member = Member.createMember(test_nickName,test_email,test_password);
+        memberRepository.save(member);
 
         //when
         boolean isDuplicateEmail = memberService.isDuplicateEmail(test_email);
@@ -104,8 +107,8 @@ public class MemberServiceTest {
     @Test
     public void isDuplicateNickName_success_Duplicated() throws Exception {
         //given
-        MemberJoinRequestDto memberJoinRequestDto = new MemberJoinRequestDto(test_nickName,test_email,test_password);
-        memberRepository.save(memberJoinRequestDto.toMemberEntity());
+        Member member = Member.createMember(test_nickName,test_email,test_password);
+        memberRepository.save(member);
 
         //when
         boolean isDuplicateNickName = memberService.isDuplicateNickName(test_nickName);
