@@ -6,9 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Embeddable @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,13 +28,12 @@ public class BodyProfile {
         this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
         this.height = height;
-        this.bmi = (Math.round((currentWeight / ((height/100)*(height/100))) * 100)) / 100.0;
+        this.bmi = (Math.round((currentWeight / ((height / 100) * (height / 100))) * 100)) / 100.0;
         this.checkAt = checkAt;
     }
 
     public static BodyProfile createBodyProfile(double currentWeight, double targetWeight, double height, LocalDateTime checkAt) {
         return new BodyProfile(currentWeight, targetWeight, height, checkAt);
     }
-
 
 }

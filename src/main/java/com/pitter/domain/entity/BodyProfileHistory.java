@@ -1,18 +1,19 @@
 package com.pitter.domain.entity;
 
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
+@Entity @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(callSuper = true)
-public class BodyProfileHistory extends BaseEntity{
+//@ToString(callSuper = true)
+public class BodyProfileHistory extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,5 +36,9 @@ public class BodyProfileHistory extends BaseEntity{
         this.member=member;
     }
 
+    @Override
+    public String toString() {
+        return new ReflectionToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).toString();
+    }
 
 }
