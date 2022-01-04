@@ -4,7 +4,6 @@ import com.pitter.domain.entity.BodyProfile;
 import com.pitter.domain.entity.BodyProfileHistory;
 import com.pitter.domain.entity.Member;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
