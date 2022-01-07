@@ -3,19 +3,17 @@ package com.pitter.service;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.repository.MemberRepository;
 import com.pitter.exception.DuplicateMemberException;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
-//@DataJpaTest///
-@RunWith(SpringRunner.class)
+@DataJpaTest
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 public class MemberServiceTest {
@@ -40,7 +38,7 @@ public class MemberServiceTest {
         assertThat(savedId).isNotNull();
     }
     
-    @Test(expected = DuplicateMemberException.class)
+    @Test
     public void join_fail_Duplicate_Email() throws Exception {
         //given
         Member member = Member.createMember(test_nickName, test_email, test_password);
@@ -54,7 +52,7 @@ public class MemberServiceTest {
         fail("should throw DuplicateMemberException");
     }
 
-    @Test(expected = DuplicateMemberException.class)
+    @Test
     public void join_fail_Duplicate_NickName() throws Exception {
         //given
         Member member = Member.createMember(test_nickName, test_email, test_password);
@@ -63,6 +61,7 @@ public class MemberServiceTest {
 
         //when;
         memberService.join(duplicateMember);
+
 
         //then
         fail("should throw DuplicateMemberException");
