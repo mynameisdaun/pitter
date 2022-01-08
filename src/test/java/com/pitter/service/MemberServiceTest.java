@@ -10,9 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.fail;
 
-@DataJpaTest
+//@DataJpaTest
 //@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
@@ -46,10 +47,10 @@ public class MemberServiceTest {
         Member duplicateMember = Member.createMember("notDuplicated", test_email, test_password);
                 
         //when
-        memberService.join(duplicateMember);
-                
+        assertThatThrownBy(()->memberService.join(duplicateMember))
+                .isInstanceOf(DuplicateMemberException.class);
         //then
-        fail("should throw DuplicateMemberException");
+
     }
 
     @Test
@@ -60,11 +61,9 @@ public class MemberServiceTest {
         Member duplicateMember = Member.createMember(test_nickName, "notduplicated@pitter.com", test_password);
 
         //when;
-        memberService.join(duplicateMember);
+        assertThatThrownBy(()->memberService.join(duplicateMember))
+                .isInstanceOf(DuplicateMemberException.class);
 
-
-        //then
-        fail("should throw DuplicateMemberException");
     }
 
     @Test
@@ -95,7 +94,6 @@ public class MemberServiceTest {
     @Test
     public void isDuplicateNickName_success_notDuplicated() throws Exception {
         //given
-
 
         //when
         boolean isDuplicateNickName = memberService.isDuplicateNickName(test_nickName);
