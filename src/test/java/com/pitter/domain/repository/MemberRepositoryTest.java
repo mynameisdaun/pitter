@@ -25,7 +25,7 @@ public class MemberRepositoryTest {
 
     private String test_nickName = "tester";
     private String test_email = "tester@pitter.com";
-    private String test_password = "Eptmxm1!";
+    private String test_password = "Eptmxm12!";
 
     @Test
     public void save_success() throws Exception {
