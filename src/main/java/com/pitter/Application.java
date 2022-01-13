@@ -19,7 +19,6 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    //TODO: 세션정보, 시큐리티 로그인 정보로 대체하기
     @Bean
     public AuditorAware<String> auditorProvider() {
         return () -> Optional.of(UUID.randomUUID().toString());
