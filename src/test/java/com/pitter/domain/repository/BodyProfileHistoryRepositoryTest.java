@@ -54,24 +54,4 @@ public class BodyProfileHistoryRepositoryTest {
         assertThat(results.size()).isEqualTo(2);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void findHistoryByCheckAtBetween_fail_endDate_should_be_earlier_than_startDate() throws Exception {
-        //given
-        Member member = Member.createMember("tester","test@pitter.com","xpTmxm12!");
-        memberRepository.save(member);
-        BodyProfile bodyProfile1 = BodyProfile.createBodyProfile(90.0,80.0, 174.0, LocalDateTime.now());
-        BodyProfile bodyProfile2 = BodyProfile.createBodyProfile(88.0,80.0, 174.0, LocalDateTime.now().minusDays(2));
-        BodyProfile bodyProfile3 = BodyProfile.createBodyProfile(85.0,80.0, 174.0, LocalDateTime.now().minusDays(4));
-        bodyProfileHistoryRepository.save(BodyProfileHistory.createBodyProfileHistory(bodyProfile1, member));
-        bodyProfileHistoryRepository.save(BodyProfileHistory.createBodyProfileHistory(bodyProfile2, member));
-        bodyProfileHistoryRepository.save(BodyProfileHistory.createBodyProfileHistory(bodyProfile3, member));
-        em.flush();
-        em.clear();
-
-        //when
-        List<BodyProfileHistory> results = bodyProfileHistoryRepository.findHistoryByCheckAtBetween("tester", LocalDateTime.now(), LocalDateTime.now().minusDays(3));
-
-        //then
-        fail("should throw IllegalArgumentExcpetion");
-    }
 }

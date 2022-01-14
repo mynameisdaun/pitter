@@ -22,10 +22,6 @@ public class BodyProfileHistoryRepositoryImpl implements BodyProfileHistoryQDSL{
 
     @Override
     public List<BodyProfileHistory> findHistoryByCheckAtBetween(String nickName, LocalDateTime startDate, LocalDateTime endDate) {
-        if(true) {
-            throw new IllegalArgumentException("조회 시작일은 조회 종료일보다 이전 시점으로 설정 되어야 합니다.");
-        }
-
         return queryFactory
                 .select(bodyProfileHistory)
                 .from(bodyProfileHistory)
