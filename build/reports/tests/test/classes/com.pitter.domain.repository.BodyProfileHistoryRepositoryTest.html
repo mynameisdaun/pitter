@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.325s</div>
+<div class="counter">0.249s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">findHistoryByCheckAtBetween_success</td>
-<td class="success">0.325s</td>
+<td class="success">0.249s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -96,16 +96,15 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.2.RELEASE)
 
-2022-01-15 00:38:55.733  WARN 10386 --- [    Test worker] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5006 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
-2022-01-15 00:39:00.739  INFO 10386 --- [    Test worker] c.p.d.r.BodyProfileHistoryRepositoryTest : Starting BodyProfileHistoryRepositoryTest on jeongdaun-ui-MacBookAir.local with PID 10386 (started by jeongdaun in /Users/jeongdaun/Desktop/JPA/demo)
-2022-01-15 00:39:00.741  INFO 10386 --- [    Test worker] c.p.d.r.BodyProfileHistoryRepositoryTest : No active profile set, falling back to default profiles: default
-2022-01-15 00:39:01.299  INFO 10386 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-01-15 00:39:01.393  INFO 10386 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83ms. Found 2 JPA repository interfaces.
-2022-01-15 00:39:01.671  INFO 10386 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2022-01-15 00:39:01.856  INFO 10386 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-01-15 00:39:01.870  INFO 10386 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2022-01-15 00:39:01.878  INFO 10386 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2022-01-15 00:39:01.879  INFO 10386 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-01-15 01:53:10.067  INFO 11380 --- [    Test worker] c.p.d.r.BodyProfileHistoryRepositoryTest : Starting BodyProfileHistoryRepositoryTest on jeongdaun-ui-MacBookAir.local with PID 11380 (started by jeongdaun in /Users/jeongdaun/Desktop/JPA/demo)
+2022-01-15 01:53:10.068  INFO 11380 --- [    Test worker] c.p.d.r.BodyProfileHistoryRepositoryTest : No active profile set, falling back to default profiles: default
+2022-01-15 01:53:10.465  INFO 11380 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-01-15 01:53:10.494  INFO 11380 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25ms. Found 2 JPA repository interfaces.
+2022-01-15 01:53:10.621  INFO 11380 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-01-15 01:53:10.729  INFO 11380 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-01-15 01:53:10.743  INFO 11380 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-01-15 01:53:10.748  INFO 11380 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-01-15 01:53:10.748  INFO 11380 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
 Hibernate: 
     
     drop table body_profile_history if exists
@@ -158,12 +157,12 @@ Hibernate:
        add constraint FKa5ittdsyjsp7k15668t16vadk 
        foreign key (member_id) 
        references member
-2022-01-15 00:39:02.005  INFO 10386 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-01-15 00:39:02.006  INFO 10386 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-01-15 00:39:02.309  WARN 10386 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-01-15 00:39:02.476  INFO 10386 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2022-01-15 00:39:02.792  INFO 10386 --- [    Test worker] c.p.d.r.BodyProfileHistoryRepositoryTest : Started BodyProfileHistoryRepositoryTest in 17.157 seconds (JVM running for 42.988)
-2022-01-15 00:39:02.824  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@b1fa523 testClass = BodyProfileHistoryRepositoryTest, testInstance = com.pitter.domain.repository.BodyProfileHistoryRepositoryTest@77307b51, testMethod = findHistoryByCheckAtBetween_success@BodyProfileHistoryRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@48d464cf testClass = BodyProfileHistoryRepositoryTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+2022-01-15 01:53:10.890  INFO 11380 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-01-15 01:53:10.891  INFO 11380 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-01-15 01:53:11.135  WARN 11380 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-01-15 01:53:11.254  INFO 11380 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-01-15 01:53:11.508  INFO 11380 --- [    Test worker] c.p.d.r.BodyProfileHistoryRepositoryTest : Started BodyProfileHistoryRepositoryTest in 6.536 seconds (JVM running for 21.075)
+2022-01-15 01:53:11.524  INFO 11380 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@637de489 testClass = BodyProfileHistoryRepositoryTest, testInstance = com.pitter.domain.repository.BodyProfileHistoryRepositoryTest@38614875, testMethod = findHistoryByCheckAtBetween_success@BodyProfileHistoryRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6c09d716 testClass = BodyProfileHistoryRepositoryTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2cc44ad, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6ebf0f36, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@72c28d64, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7216fb24], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@7e474bd]; rollback [true]
 Hibernate: 
     call next value for hibernate_sequence
 Hibernate: 
@@ -222,7 +221,7 @@ Hibernate:
         and bodyprofil0_.check_at&gt;=? 
         and bodyprofil0_.check_at&lt;=? 
         and member1_.nick_name=?
-2022-01-15 00:39:03.125  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@b1fa523 testClass = BodyProfileHistoryRepositoryTest, testInstance = com.pitter.domain.repository.BodyProfileHistoryRepositoryTest@77307b51, testMethod = findHistoryByCheckAtBetween_success@BodyProfileHistoryRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@48d464cf testClass = BodyProfileHistoryRepositoryTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true]]
+2022-01-15 01:53:11.764  INFO 11380 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@637de489 testClass = BodyProfileHistoryRepositoryTest, testInstance = com.pitter.domain.repository.BodyProfileHistoryRepositoryTest@38614875, testMethod = findHistoryByCheckAtBetween_success@BodyProfileHistoryRepositoryTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6c09d716 testClass = BodyProfileHistoryRepositoryTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2cc44ad, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@6ebf0f36, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@72c28d64, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7216fb24], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -&gt; true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -&gt; true]]
 </pre>
 </span>
 </div>
@@ -234,7 +233,7 @@ Hibernate:
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.3.2</a> at 2022. 1. 15 오전 12:39:04</p>
+<a href="http://www.gradle.org">Gradle 7.3.2</a> at 2022. 1. 15. 오전 1:53:12</p>
 </div>
 </div>
 </body>
