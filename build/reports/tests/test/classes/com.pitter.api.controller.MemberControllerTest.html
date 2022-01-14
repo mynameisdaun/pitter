@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - MemberControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>MemberControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.pitter.api.controller.html">com.pitter.api.controller</a> &gt; MemberControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">19</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.942s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">join_fail_Invalid_MemberRequestDto_nickName_empty</td>
+<td class="success">0.012s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_Invalid_MemberRequestDto_nickName_null</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_Invalid_MemberRequestDto_nickName_should_be_LessOrEquals_than_10</td>
+<td class="success">0.267s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_Invalid_MemberRequestDto_nickName_should_be_greaterOrEquals_than_2</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_Invalid_MemberRequestDto_nickName_whitespace</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_email_empty</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_email_no_account_email</td>
+<td class="success">0.035s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_email_no_companyName_dot</td>
+<td class="success">0.026s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_email_no_companyname</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_email_no_special_character</td>
+<td class="success">0.016s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_email_null</td>
+<td class="success">0.036s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_email_whitespace</td>
+<td class="success">0.012s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_password_empty</td>
+<td class="success">0.047s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_password_no_number</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_password_no_special_Character</td>
+<td class="success">0.020s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_password_no_upperCase</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_password_null</td>
+<td class="success">0.012s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_fail_invalid_MemberRequestDto_password_whitespace</td>
+<td class="success">0.014s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">join_success</td>
+<td class="success">0.362s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>00:38:21.609 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.pitter.api.controller.MemberControllerTest]
+00:38:21.610 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.pitter.api.controller.MemberControllerTest]
+00:38:21.610 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.pitter.api.controller.MemberControllerTest]
+00:38:21.610 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.pitter.api.controller.MemberControllerTest]
+00:38:21.614 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@db57326 testClass = MemberControllerTest, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@34a875b3 testClass = MemberControllerTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@4b3fa0b3, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, [ImportsContextCustomizer@4748a0f9 key = [org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
+00:38:21.617 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.pitter.api.controller.MemberControllerTest]
+00:38:21.617 [Test worker] DEBUG org.springframework.test.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.pitter.api.controller.MemberControllerTest]
+00:38:21.643 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.2.RELEASE)
+
+2022-01-15 00:38:32.149  WARN 10386 --- [    Test worker] o.s.boot.StartupInfoLogger               : InetAddress.getLocalHost().getHostName() took 5011 milliseconds to respond. Please verify your network configuration (macOS machines may need to add entries to /etc/hosts).
+2022-01-15 00:38:37.170  INFO 10386 --- [    Test worker] c.p.api.controller.MemberControllerTest  : Starting MemberControllerTest on jeongdaun-ui-MacBookAir.local with PID 10386 (started by jeongdaun in /Users/jeongdaun/Desktop/JPA/demo)
+2022-01-15 00:38:37.180  INFO 10386 --- [    Test worker] c.p.api.controller.MemberControllerTest  : No active profile set, falling back to default profiles: default
+2022-01-15 00:38:38.190  INFO 10386 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-01-15 00:38:38.333  INFO 10386 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 126ms. Found 2 JPA repository interfaces.
+2022-01-15 00:38:38.967  INFO 10386 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-01-15 00:38:39.698  INFO 10386 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-01-15 00:38:39.760  INFO 10386 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.9.Final}
+2022-01-15 00:38:39.875  INFO 10386 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2022-01-15 00:38:39.992  INFO 10386 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-01-15 00:38:40.225  INFO 10386 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-01-15 00:38:40.257  INFO 10386 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+Hibernate: 
+    
+    drop table body_profile_history if exists
+Hibernate: 
+    
+    drop table member if exists
+Hibernate: 
+    
+    drop sequence if exists hibernate_sequence
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: 
+    
+    create table body_profile_history (
+       body_profile_history_id bigint not null,
+        created_by varchar(255),
+        created_date timestamp,
+        last_modified_by varchar(255),
+        last_modified_date timestamp,
+        bmi double not null,
+        check_at timestamp,
+        current_weight double not null,
+        height double not null,
+        target_weight double not null,
+        member_id bigint,
+        primary key (body_profile_history_id)
+    )
+Hibernate: 
+    
+    create table member (
+       member_id bigint not null,
+        created_by varchar(255),
+        created_date timestamp,
+        last_modified_by varchar(255),
+        last_modified_date timestamp,
+        email varchar(255),
+        nick_name varchar(10),
+        primary key (member_id)
+    )
+Hibernate: 
+    
+    alter table member 
+       add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email)
+Hibernate: 
+    
+    alter table member 
+       add constraint UK_f3xpkeiwuq8kwkt45lkvanwsd unique (nick_name)
+Hibernate: 
+    
+    alter table body_profile_history 
+       add constraint FKa5ittdsyjsp7k15668t16vadk 
+       foreign key (member_id) 
+       references member
+2022-01-15 00:38:41.093  INFO 10386 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-01-15 00:38:41.099  INFO 10386 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-01-15 00:38:42.567  WARN 10386 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-01-15 00:38:43.670  INFO 10386 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2022-01-15 00:38:44.537  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:44.540  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:44.561  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 20 ms
+2022-01-15 00:38:44.596  INFO 10386 --- [    Test worker] c.p.api.controller.MemberControllerTest  : Started MemberControllerTest in 22.944 seconds (JVM running for 24.791)
+2022-01-15 00:38:44.673  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:44.673  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:44.675  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-01-15 00:38:44.869  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'nickName': rejected value [testertester12]; codes [Length.memberJoinRequest.nickName,Length.nickName,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.nickName,nickName]; arguments []; default message [nickName],10,2]; default message [length must be between 2 and 10]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;78&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:44.905  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:44.906  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:44.908  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2022-01-15 00:38:44.916  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'email': rejected value [tester@test]; codes [Pattern.memberJoinRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,\w+@\w+\.\w+(\.\w+)?]; default message [올바르지 않은 이메일 형식입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;65&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:44.936  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:44.936  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:44.941  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2022-01-15 00:38:44.945  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'email': rejected value [null]; codes [NotBlank.memberJoinRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email]]; default message [이메일은 필수 입력 값입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;43&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:44.974  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:44.974  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:44.977  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2022-01-15 00:38:44.980  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'email': rejected value [tester!gmail.com]; codes [Pattern.memberJoinRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,\w+@\w+\.\w+(\.\w+)?]; default message [올바르지 않은 이메일 형식입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;70&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:44.991  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:44.993  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:44.995  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-01-15 00:38:45.000  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'email': rejected value [@test.com]; codes [Pattern.memberJoinRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,\w+@\w+\.\w+(\.\w+)?]; default message [올바르지 않은 이메일 형식입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;63&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.032  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.032  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.048  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 15 ms
+2022-01-15 00:38:45.064  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest) with 2 errors: [Field error in object 'memberJoinRequest' on field 'password': rejected value []; codes [NotBlank.memberJoinRequest.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password]]; default message [비밀번호는 필수 입력 값입니다.]] [Field error in object 'memberJoinRequest' on field 'password': rejected value []; codes [Pattern.memberJoinRequest.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;+=])(?=\S+$).{8,20}]; default message [비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;63&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.084  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.086  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.088  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.email=?
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.nick_name=?
+Hibernate: 
+    call next value for hibernate_sequence
+Hibernate: 
+    insert 
+    into
+        member
+        (created_by, created_date, last_modified_by, last_modified_date, email, nick_name, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;70&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Content-Type:&quot;application/json&quot;]
+     Content type = application/json
+             Body = {&quot;id&quot;:1,&quot;nickName&quot;:&quot;tester&quot;,&quot;email&quot;:&quot;test1@pitter.com&quot;}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.448  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.449  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.453  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2022-01-15 00:38:45.455  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest) with 2 errors: [Field error in object 'memberJoinRequest' on field 'email': rejected value [ ]; codes [NotBlank.memberJoinRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email]]; default message [이메일은 필수 입력 값입니다.]] [Field error in object 'memberJoinRequest' on field 'email': rejected value [ ]; codes [Pattern.memberJoinRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,\w+@\w+\.\w+(\.\w+)?]; default message [올바르지 않은 이메일 형식입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;55&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.463  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.463  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.466  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2022-01-15 00:38:45.470  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest) with 2 errors: [Field error in object 'memberJoinRequest' on field 'nickName': rejected value [ ]; codes [Length.memberJoinRequest.nickName,Length.nickName,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.nickName,nickName]; arguments []; default message [nickName],10,2]; default message [length must be between 2 and 10]] [Field error in object 'memberJoinRequest' on field 'nickName': rejected value [ ]; codes [NotBlank.memberJoinRequest.nickName,NotBlank.nickName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.nickName,nickName]; arguments []; default message [nickName]]; default message [닉네임은 필수 입력 값입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;65&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.478  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.482  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.486  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-01-15 00:38:45.489  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'nickName': rejected value [null]; codes [NotBlank.memberJoinRequest.nickName,NotBlank.nickName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.nickName,nickName]; arguments []; default message [nickName]]; default message [닉네임은 필수 입력 값입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;50&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.497  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.497  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.499  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-01-15 00:38:45.502  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest) with 2 errors: [Field error in object 'memberJoinRequest' on field 'nickName': rejected value []; codes [Length.memberJoinRequest.nickName,Length.nickName,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.nickName,nickName]; arguments []; default message [nickName],10,2]; default message [length must be between 2 and 10]] [Field error in object 'memberJoinRequest' on field 'nickName': rejected value []; codes [NotBlank.memberJoinRequest.nickName,NotBlank.nickName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.nickName,nickName]; arguments []; default message [nickName]]; default message [닉네임은 필수 입력 값입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;64&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.511  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.511  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.516  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2022-01-15 00:38:45.519  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest) with 2 errors: [Field error in object 'memberJoinRequest' on field 'password': rejected value [ ]; codes [NotBlank.memberJoinRequest.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password]]; default message [비밀번호는 필수 입력 값입니다.]] [Field error in object 'memberJoinRequest' on field 'password': rejected value [ ]; codes [Pattern.memberJoinRequest.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;+=])(?=\S+$).{8,20}]; default message [비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;64&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.526  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.527  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.532  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2022-01-15 00:38:45.536  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'password': rejected value [xptmxm123]; codes [Pattern.memberJoinRequest.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;+=])(?=\S+$).{8,20}]; default message [비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;72&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.548  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.548  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.550  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2022-01-15 00:38:45.552  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'password': rejected value [null]; codes [NotBlank.memberJoinRequest.password,NotBlank.password,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password]]; default message [비밀번호는 필수 입력 값입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;49&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.562  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.562  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.564  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2022-01-15 00:38:45.570  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'email': rejected value [tester@]; codes [Pattern.memberJoinRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,\w+@\w+\.\w+(\.\w+)?]; default message [올바르지 않은 이메일 형식입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;61&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.582  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.583  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.586  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2022-01-15 00:38:45.589  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'password': rejected value [xptmxm!@!@a]; codes [Pattern.memberJoinRequest.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;+=])(?=\S+$).{8,20}]; default message [비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;74&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.601  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.601  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.602  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-01-15 00:38:45.604  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'password': rejected value [xptmxm12!]; codes [Pattern.memberJoinRequest.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.password,password]; arguments []; default message [password],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;+=])(?=\S+$).{8,20}]; default message [비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;72&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.611  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.611  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.612  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-01-15 00:38:45.614  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest) with 2 errors: [Field error in object 'memberJoinRequest' on field 'email': rejected value []; codes [Pattern.memberJoinRequest.email,Pattern.email,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email],[Ljavax.validation.constraints.Pattern$Flag;@1425e531,\w+@\w+\.\w+(\.\w+)?]; default message [올바르지 않은 이메일 형식입니다.]] [Field error in object 'memberJoinRequest' on field 'email': rejected value []; codes [NotBlank.memberJoinRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.email,email]; arguments []; default message [email]]; default message [이메일은 필수 입력 값입니다.]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;54&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2022-01-15 00:38:45.617  INFO 10386 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2022-01-15 00:38:45.617  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2022-01-15 00:38:45.618  INFO 10386 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2022-01-15 00:38:45.620  WARN 10386 --- [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.pitter.api.dto.MemberJoinResponse com.pitter.api.controller.MemberController.join(com.pitter.api.dto.MemberJoinRequest): [Field error in object 'memberJoinRequest' on field 'nickName': rejected value [t]; codes [Length.memberJoinRequest.nickName,Length.nickName,Length.java.lang.String,Length]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberJoinRequest.nickName,nickName]; arguments []; default message [nickName],10,2]; default message [length must be between 2 and 10]] ]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /members
+       Parameters = {}
+          Headers = [Content-Type:&quot;application/json&quot;, Content-Length:&quot;65&quot;]
+             Body = &lt;no character encoding set&gt;
+    Session Attrs = {}
+
+Handler:
+             Type = com.pitter.api.controller.MemberController
+           Method = com.pitter.api.controller.MemberController#join(MemberJoinRequest)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = org.springframework.web.bind.MethodArgumentNotValidException
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = []
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.3.2</a> at 2022. 1. 15 오전 12:39:04</p>
+</div>
+</div>
+</body>
+</html>

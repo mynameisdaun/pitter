@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.pitter.service.MemberServiceTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-01-14T15:39:03" hostname="jeongdaun-ui-MacBookAir.local" time="0.204">
+  <properties/>
+  <testcase name="join_fail_Duplicate_NickName()" classname="com.pitter.service.MemberServiceTest" time="0.061"/>
+  <testcase name="join_success()" classname="com.pitter.service.MemberServiceTest" time="0.024"/>
+  <testcase name="isDuplicateNickName_success_Duplicated()" classname="com.pitter.service.MemberServiceTest" time="0.043"/>
+  <testcase name="isDuplicateNickName_success_notDuplicated()" classname="com.pitter.service.MemberServiceTest" time="0.015"/>
+  <testcase name="isDuplicateEmail_success_notDuplicated()" classname="com.pitter.service.MemberServiceTest" time="0.008"/>
+  <testcase name="isDuplicateEmail_success_Duplicated()" classname="com.pitter.service.MemberServiceTest" time="0.013"/>
+  <testcase name="join_fail_Duplicate_Email()" classname="com.pitter.service.MemberServiceTest" time="0.012"/>
+  <system-out><![CDATA[2022-01-15 00:39:03.647  INFO 10386 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.pitter.service.MemberServiceTest], using SpringBootContextLoader
+2022-01-15 00:39:03.647  INFO 10386 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.pitter.service.MemberServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2022-01-15 00:39:03.647  INFO 10386 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.pitter.service.MemberServiceTest]: MemberServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2022-01-15 00:39:03.661  INFO 10386 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.pitter.Application for test class com.pitter.service.MemberServiceTest
+2022-01-15 00:39:03.667  INFO 10386 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2022-01-15 00:39:03.668  INFO 10386 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7c4a5ef2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@299dd381, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@34d3409d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@16732340, org.springframework.test.context.support.DirtiesContextTestExecutionListener@38e052b2, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7fa68ff4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@515fff35, org.springframework.test.context.event.EventPublishingTestExecutionListener@5eb9bf7d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@64f613da, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2f64f99f, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@16c1d11, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@123d0816, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4601a148]
+2022-01-15 00:39:03.696  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@1e033801, testMethod = join_fail_Duplicate_NickName@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+Hibernate: 
+    call next value for hibernate_sequence
+Hibernate: 
+    insert 
+    into
+        member
+        (created_by, created_date, last_modified_by, last_modified_date, email, nick_name, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.email=?
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.nick_name=?
+2022-01-15 00:39:03.748  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@1e033801, testMethod = join_fail_Duplicate_NickName@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]
+2022-01-15 00:39:03.762  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@62264d4f, testMethod = join_success@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.email=?
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.nick_name=?
+Hibernate: 
+    call next value for hibernate_sequence
+2022-01-15 00:39:03.779  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@62264d4f, testMethod = join_success@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]
+2022-01-15 00:39:03.792  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@57ac236a, testMethod = isDuplicateNickName_success_Duplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+Hibernate: 
+    call next value for hibernate_sequence
+Hibernate: 
+    insert 
+    into
+        member
+        (created_by, created_date, last_modified_by, last_modified_date, email, nick_name, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.nick_name=?
+2022-01-15 00:39:03.828  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@57ac236a, testMethod = isDuplicateNickName_success_Duplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]
+2022-01-15 00:39:03.842  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@237ee2e1, testMethod = isDuplicateNickName_success_notDuplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.nick_name=?
+2022-01-15 00:39:03.854  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@237ee2e1, testMethod = isDuplicateNickName_success_notDuplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]
+2022-01-15 00:39:03.857  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@29c21acb, testMethod = isDuplicateEmail_success_notDuplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.email=?
+2022-01-15 00:39:03.863  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@29c21acb, testMethod = isDuplicateEmail_success_notDuplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]
+2022-01-15 00:39:03.868  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@45c28c49, testMethod = isDuplicateEmail_success_Duplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+Hibernate: 
+    call next value for hibernate_sequence
+Hibernate: 
+    insert 
+    into
+        member
+        (created_by, created_date, last_modified_by, last_modified_date, email, nick_name, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.email=?
+2022-01-15 00:39:03.879  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@45c28c49, testMethod = isDuplicateEmail_success_Duplicated@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]
+2022-01-15 00:39:03.884  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@6f5288c5, testMethod = join_fail_Duplicate_Email@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@2346f77a]; rollback [true]
+Hibernate: 
+    call next value for hibernate_sequence
+Hibernate: 
+    insert 
+    into
+        member
+        (created_by, created_date, last_modified_by, last_modified_date, email, nick_name, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    select
+        member0_.member_id as member_i1_1_,
+        member0_.created_by as created_2_1_,
+        member0_.created_date as created_3_1_,
+        member0_.last_modified_by as last_mod4_1_,
+        member0_.last_modified_date as last_mod5_1_,
+        member0_.email as email6_1_,
+        member0_.nick_name as nick_nam7_1_ 
+    from
+        member member0_ 
+    where
+        member0_.email=?
+2022-01-15 00:39:03.895  INFO 10386 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test: [DefaultTestContext@5543d800 testClass = MemberServiceTest, testInstance = com.pitter.service.MemberServiceTest@6f5288c5, testMethod = join_fail_Duplicate_Email@MemberServiceTest, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@58e4aa67 testClass = MemberServiceTest, locations = '{}', classes = '{class com.pitter.Application}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@2df9b86, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@16610890, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@4d465b11, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7e7be63f], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.populatedRequestContextHolder' -> true, 'org.springframework.test.context.web.ServletTestExecutionListener.resetRequestContextHolder' -> true]]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
