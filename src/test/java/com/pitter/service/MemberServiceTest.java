@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@SpringBootTest
+@SpringBootTest(properties = "spring.config.location=classpath:/application-test.yml")
 @Transactional
 public class MemberServiceTest {
 

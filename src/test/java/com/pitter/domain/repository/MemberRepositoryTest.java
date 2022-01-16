@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = "spring.config.location=classpath:/application-test.yml")
 @Transactional
 public class MemberRepositoryTest {
     
