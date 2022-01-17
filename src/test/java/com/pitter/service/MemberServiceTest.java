@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@SpringBootTest(properties = "spring.config.location=classpath:/application-test.yml")
+@SpringBootTest(properties = "spring.config.location=classpath:/application.properties")
 @Transactional
 public class MemberServiceTest {
 
@@ -19,12 +19,14 @@ public class MemberServiceTest {
 
     @Autowired MemberRepository memberRepository;
 
-    private String test_nickName = "tester";
-    private String test_email = "tester@pitter.com";
+    private String test_nickName = "toytoy";
+    private String test_email = "tyotyo@pitter.com";
     private String test_password = "Eptmxm1!";
 
     @Test
     public void join_success() throws Exception {
+        System.out.println("============[debug]============");
+        System.out.println(System.getProperty("spring.profiles.active"));
         //given
         Member member = Member.createMember(test_nickName, test_email, test_password);
 

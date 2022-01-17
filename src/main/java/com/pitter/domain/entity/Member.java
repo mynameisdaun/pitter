@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -36,12 +37,18 @@ public class Member extends BaseEntity{
     @ToString.Exclude
     private transient String password;
 
-    private Member(String nickName, String email, String password) {
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = " varchar(20) default 'guest' ")
+    private Role role;
+
+    private Member(String nickName, String email, String password, Role role) {
         this.nickName = nickName;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
-    public static Member createMember(String nickName, String email, String password) { return new Member(nickName, email, password); }
+    public static Member createMember(String nickName, String email, String password) { return new Member(nickName, email, password, Role.GUEST); }
+    public static Member createMember(String nickName, String email, String password, Role role) { return new Member(nickName, email, password, role); }
 
 }

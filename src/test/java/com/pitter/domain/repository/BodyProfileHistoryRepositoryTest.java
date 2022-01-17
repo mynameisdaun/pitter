@@ -21,7 +21,7 @@ import static org.assertj.core.api.Fail.fail;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties = "spring.config.location=classpath:/application-test.yml")
+@SpringBootTest(properties = "spring.config.location=classpath:/application.properties")
 @Transactional
 public class BodyProfileHistoryRepositoryTest {
 

@@ -12,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.HashMap;
@@ -22,9 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@SpringBootTest(properties = "spring.config.location=classpath:/application-test.yml")
+@SpringBootTest(properties = "spring.config.location=classpath:/application.properties")
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
+@Transactional
 public class MemberControllerTest {
 
     @Autowired MemberController memberController;
