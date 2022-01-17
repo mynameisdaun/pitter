@@ -19,6 +19,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    //TODO: createdBy, UpdatedBy 세션으로 수정하기
     @Bean
     public AuditorAware<String> auditorProvider() {
         return () -> Optional.of(UUID.randomUUID().toString());
