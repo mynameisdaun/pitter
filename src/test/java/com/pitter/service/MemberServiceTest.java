@@ -25,8 +25,6 @@ public class MemberServiceTest {
 
     @Test
     public void join_success() throws Exception {
-        System.out.println("============[debug]============");
-        System.out.println(System.getProperty("spring.profiles.active"));
         //given
         Member member = Member.createMember(test_nickName, test_email, test_password);
 
