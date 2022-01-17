@@ -26,7 +26,7 @@ public class Member extends BaseEntity{
     private String nickName;
 
     @NotBlank(message = "이메일은 필수 입력 값입니다.")
-    @Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",
+    @Pattern(regexp = "\\w(\\.?\\w)+@\\w+\\.\\w+(\\.\\w+)?",
              message = "올바르지 않은 이메일 형식입니다.")
     @Column(unique = true)
     private String email;
@@ -38,7 +38,7 @@ public class Member extends BaseEntity{
     private transient String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = " varchar(20) default 'guest' ")
+    @Column(columnDefinition = " varchar(20) default 'GUEST' ")
     private Role role;
 
     private Member(String nickName, String email, String password, Role role) {
