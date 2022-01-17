@@ -1,11 +1,10 @@
-package com.pitter.api.dto;
+package com.pitter.controller.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 @JsonSerialize

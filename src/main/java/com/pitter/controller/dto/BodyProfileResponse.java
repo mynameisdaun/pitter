@@ -1,4 +1,4 @@
-package com.pitter.api.dto;
+package com.pitter.controller.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;

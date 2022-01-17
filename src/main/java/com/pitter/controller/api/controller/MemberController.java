@@ -1,7 +1,7 @@
-package com.pitter.api.controller;
+package com.pitter.controller.api.controller;
 
-import com.pitter.api.dto.MemberJoinRequest;
-import com.pitter.api.dto.MemberJoinResponse;
+import com.pitter.controller.dto.MemberJoinRequest;
+import com.pitter.controller.dto.MemberJoinResponse;
 import com.pitter.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

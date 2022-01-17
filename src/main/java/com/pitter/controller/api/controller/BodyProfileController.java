@@ -1,7 +1,7 @@
-package com.pitter.api.controller;
+package com.pitter.controller.api.controller;
 
-import com.pitter.api.dto.BodyProfileRequest;
-import com.pitter.api.dto.BodyProfileResponse;
+import com.pitter.controller.dto.BodyProfileRequest;
+import com.pitter.controller.dto.BodyProfileResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
