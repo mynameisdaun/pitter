@@ -2,8 +2,8 @@ HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
-application-datasource.properties
 application-real-db.properties
+application-oauth.properties
 ### STS ###
 .apt_generated
 .classpath
