@@ -22,4 +22,22 @@ public class IndexController {
         }
         return "index";
     }
+
+    @GetMapping("/loginSuccess")
+    public String success(Model model) {
+        SessionMember member = (SessionMember) httpSession.getAttribute("user");
+        if( member != null) {
+            model.addAttribute("userName", member.getName());
+        }
+        return "redirect";
+    }
+
+/*    @GetMapping("/login/oauth2/callback/redirect")
+    public String redirect(Model model) {
+        SessionMember member = (SessionMember) httpSession.getAttribute("user");
+        if( member != null) {
+            model.addAttribute("userName", member.getName());
+        }
+        return "redirect";
+    }*/
 }
