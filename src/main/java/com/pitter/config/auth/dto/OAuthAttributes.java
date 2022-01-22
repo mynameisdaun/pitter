@@ -25,7 +25,7 @@ public class OAuthAttributes {
         this.email=email;
         this.picture=picture;
     }
-//
+
     public static OAuthAttributes of(String registrationId,
                                      String userNameAttributeName,
                                      Map<String, Object>attributes) {
@@ -62,8 +62,8 @@ public class OAuthAttributes {
                 .build();
     }
 
-    public Member toEntity() {
+    public Member toMember() {
         //TODO: OAUTH2 권한 생각해보자.
-        return Member.createMember(name, email, "OAuth123@", Role.GUEST);
+        return Member.createMember(name, email, "OAuth123@", Role.USER);
     }
 }

@@ -18,7 +18,7 @@ public class MemberController {
 
     @PostMapping("/members")
     public MemberJoinResponse join(@Valid @RequestBody MemberJoinRequest memberJoinRequest) {
-        Long savedId = memberService.join(memberJoinRequest.toMemberEntity());
+        Long savedId = memberService.join(memberJoinRequest.toMemberEntity()).getId();
         return new MemberJoinResponse(savedId, memberJoinRequest.getNickName(), memberJoinRequest.getEmail());
     }
 

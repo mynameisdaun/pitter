@@ -29,7 +29,7 @@ public class MemberServiceTest {
         Member member = Member.createMember(test_nickName, test_email, test_password);
 
         //when
-        Long savedId = memberService.join(member);
+        Long savedId = memberService.join(member).getId();
         
         //then
         assertThat(savedId).isNotNull();

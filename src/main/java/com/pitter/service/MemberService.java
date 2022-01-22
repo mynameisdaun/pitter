@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -14,12 +16,16 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Long join (Member member) {
+    public Member join (Member member) {
         if(isDuplicateEmail(member.getEmail()) || isDuplicateNickName(member.getNickName())) {
             throw new DuplicateMemberException("이미 존재하는 회원입니다.");
         }
-        Member savedMember = memberRepository.save(member);
-        return savedMember.getId();
+        return memberRepository.save(member);
+    }
+
+    public Member findByEmail(String email) {
+        return memberRepository.findByEmail(email)
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public boolean isDuplicateNickName(String nickName) {
