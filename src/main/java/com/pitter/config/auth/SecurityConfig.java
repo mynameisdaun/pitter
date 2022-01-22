@@ -16,12 +16,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
-    private final TokenService tokenService;
     private final MemberService memberService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterAfter(new JwtAuthenticationFilter(tokenService, memberService), LogoutFilter.class);
+        http.addFilterAfter(new JwtAuthenticationFilter(memberService), LogoutFilter.class);
 
         http
             .httpBasic()

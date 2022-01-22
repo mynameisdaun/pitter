@@ -1,7 +1,5 @@
 package com.pitter.controller.api.controller.common;
 
-import com.pitter.config.auth.TokenService;
-import com.pitter.config.auth.dto.Token;
 import com.pitter.domain.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,11 +1,8 @@
 package com.pitter.config.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pitter.config.auth.dto.OAuthAttributes;
-import com.pitter.config.auth.dto.Token;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.entity.Role;
-import com.pitter.domain.repository.MemberRepository;
 import com.pitter.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
