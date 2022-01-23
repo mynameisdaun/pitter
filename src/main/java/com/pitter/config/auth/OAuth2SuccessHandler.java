@@ -23,7 +23,6 @@ import java.util.Map;
 @Component
 public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     private final ObjectMapper objectMapper;
-    private final TokenService tokenService;
     private final MemberService memberService;
 
     @Override
@@ -32,7 +31,6 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
         //OAuthAttributes oAuthAttributes = (OAuthAttributes) oAuth2User.getAttributes();
         Map<String, Object> oAuthAttributes = oAuth2User.getAttributes();
-        Member member;
 
 //        try {
 //            member = memberService.findByEmail((String) oAuthAttributes.get("email"));
@@ -40,21 +38,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 //            member = memberService.join(oAuthAttributes.toMember());
 //        }
 
-        Token token = tokenService.generateToken((String) oAuthAttributes.get("email"), Role.USER);
-        log.debug("{}", token);
 
-        writeTokenResponse(response, token);
     }
 
-    private void writeTokenResponse(HttpServletResponse response, Token token) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        response.addHeader("Authorization", token.getToken());
-        response.addHeader("Refresh", token.getRefreshToken());
-        response.setContentType("application/json;charset=UTF-8");
-
-        PrintWriter writer = response.getWriter();
-        writer.println(objectMapper.writeValueAsString(token));
-        writer.flush();
-    }
 }
