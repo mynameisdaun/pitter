@@ -1,4 +1,4 @@
-package com.pitter.config.auth.dto;
+package com.pitter.config.auth;
 
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.entity.Role;

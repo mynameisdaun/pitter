@@ -1,5 +1,6 @@
 package com.pitter.domain.entity;
 
+import com.pitter.config.auth.dto.TokenDto;
 import io.jsonwebtoken.*;
 import lombok.*;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import java.util.Date;
 @ToString
 public class Token extends BaseEntity implements Serializable {
 
-    @Transient private final Logger logger = LoggerFactory.getLogger(Token.class);
+    @Transient public static final Logger logger = LoggerFactory.getLogger(Token.class);
 
     @Transient private static String jwtSecretKey;
 
@@ -30,15 +31,13 @@ public class Token extends BaseEntity implements Serializable {
     @JoinColumn(name = "email")
     private Member member;
 
-    private String accessToken;
+    @Transient private String accessToken;
 
-    private LocalDateTime accessTokenExpiredAt;
+    @Transient private LocalDateTime accessTokenExpiredAt;
 
     private String refreshToken;
 
     private LocalDateTime refreshTokenExpiredAt;
-
-    private LocalDateTime issuedAt;
 
     private Token(Member member, String accessToken, LocalDateTime accessTokenExpiredAt, String refreshToken, LocalDateTime refreshTokenExpiredAt, LocalDateTime issuedAt) {
         this.member = member;
@@ -46,17 +45,20 @@ public class Token extends BaseEntity implements Serializable {
         this.accessTokenExpiredAt = accessTokenExpiredAt;
         this.refreshToken = refreshToken;
         this.refreshTokenExpiredAt = refreshTokenExpiredAt;
-        this.issuedAt = issuedAt;
     }
 
     public static Token generateToken(Member member) {
         String accessToken = tokenBuilder(member, accessTokenPeriod);
         String refreshToken = tokenBuilder(member, refreshTokenPeriod);
         LocalDateTime now = LocalDateTime.now();
-        return new Token(member, accessToken, now.plusNanos(accessTokenPeriod), refreshToken, now.plusNanos(refreshTokenPeriod), now);
+        return new Token(member, accessToken, now.plusSeconds(accessTokenPeriod/1000), refreshToken, now.plusSeconds(refreshTokenPeriod/1000), now);
     }
 
-    public boolean verifyToken(String token) {
+    public TokenDto toDto() {
+        return new TokenDto(this.accessToken, this.refreshToken);
+    }
+
+    public static boolean verifyToken(String token) {
         try {
             Jws<Claims> claims = Jwts.parser()
                     .setSigningKey(jwtSecretKey)
@@ -78,13 +80,11 @@ public class Token extends BaseEntity implements Serializable {
         return false;
     }
 
-    private static String tokenBuilder(Member member, Long tokenPeriod) {
+    public static String tokenBuilder(Member member, Long tokenPeriod) {
         Claims claims = Jwts.claims()
                 .setSubject(member.getEmail());
         claims.put("role", member.getRole().getRole());
         Date now = new Date();
-        System.out.println("hello~");
-        System.out.println(tokenPeriod);
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)

@@ -1,6 +1,5 @@
 package com.pitter.controller.ui;
 
-import com.pitter.config.auth.dto.SessionMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +15,13 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        SessionMember member = (SessionMember) httpSession.getAttribute("user");
-        if( member != null) {
-            model.addAttribute("userName", member.getName());
-        }
+
         return "index";
     }
 
     @GetMapping("/loginSuccess")
     public String success(Model model) {
-        SessionMember member = (SessionMember) httpSession.getAttribute("user");
-        if( member != null) {
-            model.addAttribute("userName", member.getName());
-        }
+
         return "redirect";
     }
 

@@ -1,8 +1,5 @@
 package com.pitter.config.auth;
 
-import com.pitter.config.auth.dto.OAuthAttributes;
-import com.pitter.config.auth.dto.SessionMember;
-import com.pitter.domain.entity.Member;
 import com.pitter.domain.entity.Role;
 import com.pitter.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

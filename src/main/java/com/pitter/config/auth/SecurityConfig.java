@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterAfter(new JwtAuthenticationFilter(memberService), LogoutFilter.class);
+        http.addFilterBefore(new JwtAuthenticationFilter(memberService), UsernamePasswordAuthenticationFilter.class);
 
         http
             .httpBasic()
@@ -32,11 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .disable()
         .and()
             .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**","/js/**","/h2-console/**")
+                .antMatchers("/**", "/css/**", "/images/**","/js/**","/h2-console/**")
                     .permitAll()
                 .antMatchers("/members")
                     .permitAll()
-                .antMatchers("/token/**")
+                .antMatchers("/healthCheck")
+                    .permitAll()
+                .antMatchers("/login/**")
                     .permitAll()
                 .anyRequest()
                     .authenticated()
