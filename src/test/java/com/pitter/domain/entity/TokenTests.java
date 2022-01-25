@@ -2,6 +2,7 @@ package com.pitter.domain.entity;
 
 import com.pitter.domain.repository.MemberRepository;
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class TokenTests {
 
     @Before
     public void setUp() {
-        this.member = Member.createMember("tester", new Email("tester@pitter.com"), "TestPass@12!", Role.USER);
+        this.member = Member.createMember(new NickName("tester"), new Email("tester@pitter.com"), "TestPass@12!", Role.USER);
     }
 
     @Test

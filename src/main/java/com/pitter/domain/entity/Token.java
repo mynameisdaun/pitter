@@ -82,7 +82,7 @@ public class Token extends BaseEntity implements Serializable {
 
     public static String tokenBuilder(Member member, Long tokenPeriod) {
         Claims claims = Jwts.claims()
-                .setSubject(member.getEmail().getValue());
+                .setSubject(member.getEmail().getEmail());
         claims.put("role", member.getRole().getRole());
         Date now = new Date();
         return Jwts.builder()

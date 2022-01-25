@@ -1,6 +1,7 @@
 package com.pitter.domain.repository;
 
 import com.pitter.domain.entity.BodyProfileHistory;
+import com.pitter.domain.wrapper.NickName;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ public class BodyProfileHistoryRepositoryImpl implements BodyProfileHistoryQDSL{
     }
 
     @Override
-    public List<BodyProfileHistory> findHistoryByCheckAtBetween(String nickName, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<BodyProfileHistory> findHistoryByCheckAtBetween(NickName nickName, LocalDateTime startDate, LocalDateTime endDate) {
         return queryFactory
                 .select(bodyProfileHistory)
                 .from(bodyProfileHistory)

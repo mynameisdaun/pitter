@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @ToString
 public class Email {
-
     private String email;
 
     public Email(String email) {
@@ -26,12 +25,8 @@ public class Email {
         this.email = email;
     }
 
-    public String getValue() {
-        return this.email;
-    }
-
     public boolean isEmpty() {
-        return this.email==null || this.email.equals("") || this.email.equals(" ");
+        return this.email ==null || this.email.equals("") || this.email.equals(" ");
     }
 
     @Override
@@ -39,6 +34,7 @@ public class Email {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Email email1 = (Email) o;
+
         return email != null ? email.equals(email1.email) : email1.email == null;
     }
 

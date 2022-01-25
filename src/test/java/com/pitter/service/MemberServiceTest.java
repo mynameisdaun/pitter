@@ -3,7 +3,9 @@ package com.pitter.service;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.repository.MemberRepository;
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import com.pitter.exception.DuplicateMemberException;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,9 +22,10 @@ public class MemberServiceTest {
 
     @Autowired MemberRepository memberRepository;
 
-    private String test_nickName = "toytoy";
+    private NickName test_nickName = new NickName("toytoy");
     private Email test_email = new Email("tyotyo@pitter.com");
     private String test_password = "Eptmxm1!";
+    private Member member;
 
     @Test
     public void join_success() throws Exception {
@@ -41,7 +44,7 @@ public class MemberServiceTest {
         //given
         Member member = Member.createMember(test_nickName, test_email, test_password);
         memberRepository.save(member);
-        Member duplicateMember = Member.createMember("notDuplicated", test_email, test_password);
+        Member duplicateMember = Member.createMember(new NickName("중복아닌닉네임"), test_email, test_password);
                 
         //when
         assertThatThrownBy(()->memberService.join(duplicateMember))

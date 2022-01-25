@@ -1,6 +1,7 @@
 package com.pitter.domain.entity;
 
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,9 @@ public class Member extends BaseEntity{
     @Column(name = "member_id")
     private Long id;
 
-    @NotBlank(message = "닉네임은 필수 입력 값입니다.")
     @Column(unique = true)
-    @Length(min = 2, max = 10)
-    private String nickName;
+    @Embedded
+    private NickName nickName;
 
     @Column(unique = true)
     @Embedded
@@ -40,24 +40,31 @@ public class Member extends BaseEntity{
     @Column(columnDefinition = " varchar(20) default 'GUEST' ")
     private Role role;
 
-    private Member(String nickName, Email email, String password, Role role) {
+    private Member(NickName nickName, Email email, String password, Role role) {
         this.nickName = nickName;
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    public static Member createMember(String nickName, Email email, String password) throws IllegalArgumentException {
+    public static Member createMember(NickName nickName, Email email, String password) throws IllegalArgumentException {
         validateEmail(email);
+        validateNickName(nickName);
         return new Member(nickName, email, password, Role.GUEST);
     }
-    public static Member createMember(String nickName, Email email, String password, Role role) {
+    public static Member createMember(NickName nickName, Email email, String password, Role role) {
         validateEmail(email);
+        validateNickName(nickName);
         return new Member(nickName, email, password, role);
     }
 
     private static void validateEmail(Email email) {
         if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("이메일은 필수 값 입니다.");
+        }
+    }
+    private static void validateNickName(NickName nickName) {
+        if (nickName == null || nickName.isEmpty()) {
             throw new IllegalArgumentException("이메일은 필수 값 입니다.");
         }
     }

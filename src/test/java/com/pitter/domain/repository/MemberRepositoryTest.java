@@ -2,6 +2,7 @@ package com.pitter.domain.repository;
 
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class MemberRepositoryTest {
 
     @Autowired private EntityManager entityManager;
 
-    private String test_nickName = "tester";
+    private NickName test_nickName = new NickName("tester");
     private Email test_email = new Email("tester@pitter.com");
     private String test_password = "Eptmxm12!";
 
@@ -41,8 +42,8 @@ public class MemberRepositoryTest {
         assertNotNull(savedMember);
     }
 
-    @Test(expected = ConstraintViolationException.class)
-    public void save_fail_nickNae_null() throws Exception {
+    @Test(expected = IllegalArgumentException.class)
+    public void save_fail_nickName_null() throws Exception {
         //given
         Member member = Member.createMember(null, test_email, test_password);
 
@@ -54,56 +55,56 @@ public class MemberRepositoryTest {
         fail("should throw ConstraintViolationException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_nickName_empty_String() throws Exception {
         //given
-        Member member = Member.createMember("", test_email, test_password);
+        Member member = Member.createMember(new NickName(""), test_email, test_password);
 
         //when
         memberRepository.save(member);
         entityManager.flush();
 
         //then
-        fail("should throw ConstraintViolationException");
+        fail("should throw IllegalArgumentException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_nickName_length_is_GreaterEqual_than_2() throws Exception {
         //given
-        Member member = Member.createMember("정", test_email, test_password);
+        Member member = Member.createMember(new NickName("정"), test_email, test_password);
 
         //when
         memberRepository.save(member);
         entityManager.flush();
 
         //then
-        fail("should throw ConstraintViolationException");
+        fail("should throw IllegalArgumentException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_nickName_length_is_LessEqual_than_10() throws Exception {
         //given
-        Member member = Member.createMember("동해물과백두산이마르고", test_email, test_password);
+        Member member = Member.createMember(new NickName("동해물과백두산이마르고"), test_email, test_password);
 
         //when
         memberRepository.save(member);
         entityManager.flush();
 
         //then
-        fail("should throw ConstraintViolationException");
+        fail("should throw IllegalArgumentException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_nickName_blank_white_space() throws Exception {
         //given
-        Member member = Member.createMember(" ", test_email, test_password);
+        Member member = Member.createMember(new NickName(" "), test_email, test_password);
 
         //when
         memberRepository.save(member);
         entityManager.flush();
 
         //then
-        fail("should throw ConstraintViolationException");
+        fail("should throw IllegalArgumentException");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -301,7 +302,7 @@ public class MemberRepositoryTest {
         //given
         final int numberOfData = 3;
         for(int i = 1 ; i <= numberOfData ; i ++) {
-            memberRepository.save(Member.createMember("tester"+i,new Email("tester"+i+"@gmail.com"),"Tester!"+i));
+            memberRepository.save(Member.createMember(new NickName("tester"+i), new Email("tester"+i+"@gmail.com"),"Tester!"+i));
         }
         entityManager.flush();
 
@@ -346,7 +347,7 @@ public class MemberRepositoryTest {
     @Test(expected = IllegalArgumentException.class)
     public void findByNickName_success_noneExistNickName() throws Exception {
         //given
-        String noneExistNickName = "NONE";
+        NickName noneExistNickName = new NickName("NONE");
 
         //when
         Member findMember = memberRepository.findByNickName(noneExistNickName).orElseThrow(() -> new IllegalArgumentException("no such data"));

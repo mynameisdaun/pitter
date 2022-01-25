@@ -3,6 +3,7 @@ package com.pitter.service;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.repository.MemberRepository;
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import com.pitter.exception.DuplicateMemberException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class MemberService {
                 .orElseThrow(NoSuchElementException::new);
     }
 
-    public boolean isDuplicateNickName(String nickName) {
+    public boolean isDuplicateNickName(NickName nickName) {
         return memberRepository.findByNickName(nickName)
                 .isPresent();
     }

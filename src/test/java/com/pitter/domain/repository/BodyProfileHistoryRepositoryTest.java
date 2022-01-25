@@ -4,6 +4,7 @@ import com.pitter.domain.entity.BodyProfileHistory;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.wrapper.BodyProfile;
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -36,7 +37,7 @@ public class BodyProfileHistoryRepositoryTest {
     @Test
     public void findHistoryByCheckAtBetween_success() throws Exception {
         //given
-        Member member = Member.createMember("tester",new Email("test@pitter.com"),"xpTmxm12!");
+        Member member = Member.createMember(new NickName("tester"),new Email("test@pitter.com"),"xpTmxm12!");
         memberRepository.save(member);
         BodyProfile bodyProfile1 = BodyProfile.createBodyProfile(90.0,80.0, 174.0, LocalDateTime.now());
         BodyProfile bodyProfile2 = BodyProfile.createBodyProfile(88.0,80.0, 174.0, LocalDateTime.now().minusDays(2));
@@ -48,7 +49,7 @@ public class BodyProfileHistoryRepositoryTest {
         em.clear();
                 
         //when
-        List<BodyProfileHistory> results = bodyProfileHistoryRepository.findHistoryByCheckAtBetween("tester", LocalDateTime.now().minusDays(3),LocalDateTime.now());
+        List<BodyProfileHistory> results = bodyProfileHistoryRepository.findHistoryByCheckAtBetween(new NickName("tester"), LocalDateTime.now().minusDays(3),LocalDateTime.now());
 
         //then
         assertThat(results.size()).isEqualTo(2);

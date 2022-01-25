@@ -56,8 +56,9 @@ public class MemberControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
     }
-    
-    @Test
+
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_Invalid_MemberRequestDto_nickName_null () throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -72,7 +73,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_Invalid_MemberRequestDto_nickName_empty () throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -88,7 +90,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_Invalid_MemberRequestDto_nickName_whitespace () throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -104,7 +107,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_Invalid_MemberRequestDto_nickName_should_be_greaterOrEquals_than_2() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -120,7 +124,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_Invalid_MemberRequestDto_nickName_should_be_LessOrEquals_than_10() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();

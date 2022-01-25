@@ -3,6 +3,7 @@ package com.pitter.config.auth;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.entity.Role;
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -65,6 +66,6 @@ public class OAuthAttributes {
 
     public Member toMember() {
         //TODO: OAUTH2 권한 생각해보자.
-        return Member.createMember(name, new Email(email), "OAuth123@", Role.USER);
+        return Member.createMember(new NickName(name), new Email(email), "OAuth123@", Role.USER);
     }
 }

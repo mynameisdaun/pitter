@@ -3,18 +3,18 @@ package com.pitter.controller.dto;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.wrapper.NickName;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-@Data
+
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberJoinRequest {
 
-    @NotBlank(message = "닉네임은 필수 입력 값입니다.")
-    @Length(min = 2, max = 10)
     private String nickName;
 
     private String email;
@@ -25,7 +25,7 @@ public class MemberJoinRequest {
     private String password;
 
     public Member toMemberEntity() {
-        return Member.createMember(this.nickName, new Email(this.email), this.password);
+        return Member.createMember(new NickName(nickName), new Email(this.email), this.password);
     }
 
 }
