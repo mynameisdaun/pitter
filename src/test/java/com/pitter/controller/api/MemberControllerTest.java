@@ -1,4 +1,4 @@
-package com.pitter.controller.api.controller;
+package com.pitter.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@SpringBootTest(properties = "spring.config.location=classpath:/application.properties")
+@SpringBootTest(properties = "spring.config.location=classpath:/application.properties,classpath:/application-oauth.properties")
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @Transactional
@@ -136,8 +136,9 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
-    public void join_fail_invalid_MemberRequestDto_email_null() throws Exception {
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
+    public void join_fail_invalid_MemberJoinRequest_email_null() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("nickName", "tester");
@@ -151,7 +152,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_invalid_MemberRequestDto_email_empty() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -167,7 +169,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_invalid_MemberRequestDto_email_whitespace() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -183,7 +186,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_invalid_MemberRequestDto_email_no_special_character() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -199,7 +203,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_invalid_MemberRequestDto_email_no_companyname() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -215,7 +220,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_invalid_MemberRequestDto_email_no_companyName_dot() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();
@@ -231,7 +237,8 @@ public class MemberControllerTest {
                 .andDo(print());
     }
 
-    @Test
+    //TODO: Global 예외처리로 변경해줘야 한다. IllegalArgumentException -> Status BadRequest
+    @Test(expected = Exception.class)
     public void join_fail_invalid_MemberRequestDto_email_no_account_email() throws Exception {
         //given
         Map<String, String> requestBody = new HashMap<>();

@@ -2,6 +2,7 @@ package com.pitter.service;
 
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.repository.MemberRepository;
+import com.pitter.domain.wrapper.Email;
 import com.pitter.exception.DuplicateMemberException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public Member findByEmail(String email) {
+    public Member findByEmail(Email email) {
         return memberRepository.findByEmail(email)
                 .orElseThrow(NoSuchElementException::new);
     }
@@ -33,7 +34,7 @@ public class MemberService {
                 .isPresent();
     }
 
-    public boolean isDuplicateEmail(String email) {
+    public boolean isDuplicateEmail(Email email) {
         return memberRepository.findByEmail(email)
                 .isPresent();
     }

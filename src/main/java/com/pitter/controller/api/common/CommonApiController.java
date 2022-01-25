@@ -1,4 +1,4 @@
-package com.pitter.controller.api.controller.common;
+package com.pitter.controller.api.common;
 
 import com.google.common.collect.Maps;
 import lombok.RequiredArgsConstructor;

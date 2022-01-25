@@ -1,6 +1,7 @@
 package com.pitter.domain.repository;
 
 import com.pitter.domain.entity.Member;
+import com.pitter.domain.wrapper.Email;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties = "spring.config.location=classpath:/application.properties")
+@SpringBootTest(properties = "spring.config.location=classpath:/application.properties,classpath:/application-oauth.properties")
 @Transactional
 public class MemberRepositoryTest {
     
@@ -24,7 +25,7 @@ public class MemberRepositoryTest {
     @Autowired private EntityManager entityManager;
 
     private String test_nickName = "tester";
-    private String test_email = "tester@pitter.com";
+    private Email test_email = new Email("tester@pitter.com");
     private String test_password = "Eptmxm12!";
 
     @Test
@@ -105,7 +106,7 @@ public class MemberRepositoryTest {
         fail("should throw ConstraintViolationException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_email_null() throws Exception {
         //given
         Member member = Member.createMember(test_nickName, null, test_password);
@@ -115,13 +116,13 @@ public class MemberRepositoryTest {
         entityManager.flush();
 
         //then
-        fail("should throw ConstraintViolationException");
+        fail("should throw IllegalArgumentException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_email_empty_String() throws Exception {
         //given
-        Member member = Member.createMember(test_nickName, "", test_password);
+        Member member = Member.createMember(test_nickName, new Email(""), test_password);
 
         //when
         memberRepository.save(member);
@@ -131,30 +132,30 @@ public class MemberRepositoryTest {
         fail("should throw ConstraintViolationException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_email_blank_white_space() throws Exception {
         //given
-        Member member = Member.createMember(test_nickName, " ", test_password);
+        Member member = Member.createMember(test_nickName, new Email(" "), test_password);
 
         //when
         memberRepository.save(member);
         entityManager.flush();
 
         //then
-        fail("should throw ConstraintViolationException");
+        fail("should throw IllegalArgumentException");
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void save_fail_email_No_At_Character() throws Exception {
         //given
-        Member member = Member.createMember(test_nickName, "daun9870!gmail.com", test_password);
+        Member member = Member.createMember(test_nickName, new Email("daun9870!gmail.com"), test_password);
 
         //when
         memberRepository.save(member);
         entityManager.flush();
 
         //then
-        fail("should throw ConstraintViolationException");
+        fail("should throw IllegalArgumentException");
     }
 
     @Test(expected = ConstraintViolationException.class)
@@ -300,7 +301,7 @@ public class MemberRepositoryTest {
         //given
         final int numberOfData = 3;
         for(int i = 1 ; i <= numberOfData ; i ++) {
-            memberRepository.save(Member.createMember("tester"+i,"tester"+i+"@gmail.com","Tester!"+i));
+            memberRepository.save(Member.createMember("tester"+i,new Email("tester"+i+"@gmail.com"),"Tester!"+i));
         }
         entityManager.flush();
 
@@ -375,7 +376,7 @@ public class MemberRepositoryTest {
     @Test(expected = IllegalArgumentException.class)
     public void findByEmail_fail_NoneExistEmail() throws Exception {
         //given
-        String nonExistEmail = "noexistTest@gmail.com";
+        Email nonExistEmail = new Email("noexistTest@gmail.com");
 
         //when
         Member findMember = memberRepository.findByEmail(nonExistEmail).orElseThrow(() -> new IllegalArgumentException("no such data"));

@@ -1,4 +1,4 @@
-package com.pitter.controller.api.controller;
+package com.pitter.controller.api;
 
 import com.pitter.controller.dto.MemberJoinRequest;
 import com.pitter.controller.dto.MemberJoinResponse;
@@ -21,9 +21,4 @@ public class MemberController {
         Long savedId = memberService.join(memberJoinRequest.toMemberEntity()).getId();
         return new MemberJoinResponse(savedId, memberJoinRequest.getNickName(), memberJoinRequest.getEmail());
     }
-
-
-
-
-
 }

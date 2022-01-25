@@ -1,4 +1,4 @@
-package com.pitter.domain.entity;
+package com.pitter.domain.wrapper;
 
 
 import lombok.AccessLevel;
@@ -9,9 +9,9 @@ import lombok.ToString;
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
-@Embeddable @Getter
+@Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
+@Getter @ToString
 public class BodyProfile {
 
     private double currentWeight;

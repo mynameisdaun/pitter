@@ -1,5 +1,6 @@
 package com.pitter.domain.entity;
 
+import com.pitter.domain.wrapper.Email;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,11 +26,9 @@ public class Member extends BaseEntity{
     @Length(min = 2, max = 10)
     private String nickName;
 
-    @NotBlank(message = "이메일은 필수 입력 값입니다.")
-    @Pattern(regexp = "\\w(\\.?\\w)+@\\w+\\.\\w+(\\.\\w+)?",
-             message = "올바르지 않은 이메일 형식입니다.")
     @Column(unique = true)
-    private String email;
+    @Embedded
+    private Email email;
 
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,20}",
@@ -41,14 +40,26 @@ public class Member extends BaseEntity{
     @Column(columnDefinition = " varchar(20) default 'GUEST' ")
     private Role role;
 
-    private Member(String nickName, String email, String password, Role role) {
+    private Member(String nickName, Email email, String password, Role role) {
         this.nickName = nickName;
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    public static Member createMember(String nickName, String email, String password) { return new Member(nickName, email, password, Role.GUEST); }
-    public static Member createMember(String nickName, String email, String password, Role role) { return new Member(nickName, email, password, role); }
+    public static Member createMember(String nickName, Email email, String password) throws IllegalArgumentException {
+        validateEmail(email);
+        return new Member(nickName, email, password, Role.GUEST);
+    }
+    public static Member createMember(String nickName, Email email, String password, Role role) {
+        validateEmail(email);
+        return new Member(nickName, email, password, role);
+    }
+
+    private static void validateEmail(Email email) {
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("이메일은 필수 값 입니다.");
+        }
+    }
 
 }

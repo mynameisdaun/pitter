@@ -1,16 +1,13 @@
 package com.pitter.domain.repository;
 
 import com.pitter.domain.entity.BodyProfileHistory;
-import com.pitter.domain.entity.QBodyProfileHistory;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.pitter.domain.entity.QBodyProfileHistory.*;
+import static com.pitter.domain.entity.QBodyProfileHistory.bodyProfileHistory;
+
 
 public class BodyProfileHistoryRepositoryImpl implements BodyProfileHistoryQDSL{
 
@@ -40,6 +37,4 @@ public class BodyProfileHistoryRepositoryImpl implements BodyProfileHistoryQDSL{
     private BooleanExpression checkAtLoe(LocalDateTime endDate) {
         return bodyProfileHistory.bodyProfile.checkAt.loe(endDate);
     }
-
-
 }

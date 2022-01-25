@@ -1,4 +1,4 @@
-package com.pitter.controller.api.controller;
+package com.pitter.controller.api;
 
 import com.pitter.controller.dto.BodyProfileRequest;
 import com.pitter.controller.dto.BodyProfileResponse;

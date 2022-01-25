@@ -2,6 +2,7 @@ package com.pitter.service;
 
 import com.pitter.domain.entity.Member;
 import com.pitter.domain.repository.MemberRepository;
+import com.pitter.domain.wrapper.Email;
 import com.pitter.exception.DuplicateMemberException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@SpringBootTest(properties = "spring.config.location=classpath:/application.properties")
+@SpringBootTest(properties = "spring.config.location=classpath:/application.properties,classpath:/application-oauth.properties")
 @Transactional
 public class MemberServiceTest {
 
@@ -20,7 +21,7 @@ public class MemberServiceTest {
     @Autowired MemberRepository memberRepository;
 
     private String test_nickName = "toytoy";
-    private String test_email = "tyotyo@pitter.com";
+    private Email test_email = new Email("tyotyo@pitter.com");
     private String test_password = "Eptmxm1!";
 
     @Test
@@ -54,7 +55,7 @@ public class MemberServiceTest {
         //given
         Member member = Member.createMember(test_nickName, test_email, test_password);
         memberRepository.save(member);
-        Member duplicateMember = Member.createMember(test_nickName, "notduplicated@pitter.com", test_password);
+        Member duplicateMember = Member.createMember(test_nickName, new Email("notduplicated@pitter.com"), test_password);
 
         //when;
         assertThatThrownBy(()->memberService.join(duplicateMember))

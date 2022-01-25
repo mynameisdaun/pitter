@@ -2,25 +2,21 @@ package com.pitter.controller.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.pitter.domain.entity.Member;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.pitter.domain.wrapper.Email;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Data
-@JsonSerialize
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberJoinRequest {
 
     @NotBlank(message = "닉네임은 필수 입력 값입니다.")
     @Length(min = 2, max = 10)
     private String nickName;
 
-    @NotBlank(message = "이메일은 필수 입력 값입니다.")
-    @Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",
-            message = "올바르지 않은 이메일 형식입니다.")
     private String email;
 
     @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
@@ -29,7 +25,7 @@ public class MemberJoinRequest {
     private String password;
 
     public Member toMemberEntity() {
-        return Member.createMember(this.nickName, this.email, this.password);
+        return Member.createMember(this.nickName, new Email(this.email), this.password);
     }
 
 }

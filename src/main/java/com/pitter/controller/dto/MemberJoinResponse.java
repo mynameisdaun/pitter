@@ -1,6 +1,7 @@
 package com.pitter.controller.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pitter.domain.wrapper.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,6 @@ public class MemberJoinResponse {
     @Length(min = 2, max = 10)
     private String nickName;
 
-    @NotBlank(message = "이메일은 필수 입력 값입니다.")
-    @Pattern(regexp = "\\w+@\\w+\\.\\w+(\\.\\w+)?",
-            message = "올바르지 않은 이메일 형식입니다.")
     private String email;
 
 }
