@@ -1,4 +1,4 @@
-package com.pitter.domain.wrapper;
+package com.pitter.domain.entity.bodyprofilehistory;
 
 
 import lombok.AccessLevel;
@@ -15,13 +15,9 @@ import java.time.LocalDateTime;
 public class BodyProfile {
 
     private double currentWeight;
-
     private double targetWeight;
-
     private double height;
-
     private double bmi;
-
     private LocalDateTime checkAt;
 
     private BodyProfile(double currentWeight, double targetWeight, double height, LocalDateTime checkAt) {

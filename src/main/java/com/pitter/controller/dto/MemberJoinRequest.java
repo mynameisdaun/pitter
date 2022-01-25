@@ -1,11 +1,9 @@
 package com.pitter.controller.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.pitter.domain.entity.Member;
-import com.pitter.domain.wrapper.Email;
-import com.pitter.domain.wrapper.NickName;
+import com.pitter.domain.entity.member.Member;
+import com.pitter.domain.entity.member.Email;
+import com.pitter.domain.entity.member.NickName;
 import lombok.*;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

@@ -1,6 +1,6 @@
 package com.pitter.domain.repository;
 
-import com.pitter.domain.entity.Member;
+import com.pitter.domain.entity.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

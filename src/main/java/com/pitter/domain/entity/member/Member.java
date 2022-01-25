@@ -1,13 +1,10 @@
-package com.pitter.domain.entity;
+package com.pitter.domain.entity.member;
 
-import com.pitter.domain.wrapper.Email;
-import com.pitter.domain.wrapper.NickName;
+import com.pitter.domain.entity.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @Entity @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
-public class Member extends BaseEntity{
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id")

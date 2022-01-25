@@ -1,6 +1,6 @@
 package com.pitter.controller.dto;
 
-import com.pitter.domain.wrapper.Email;
+import com.pitter.domain.entity.member.Email;
 import lombok.Getter;
 import lombok.ToString;
 

@@ -1,10 +1,10 @@
 package com.pitter.domain.repository;
 
-import com.pitter.domain.entity.BodyProfileHistory;
-import com.pitter.domain.entity.Member;
-import com.pitter.domain.wrapper.BodyProfile;
-import com.pitter.domain.wrapper.Email;
-import com.pitter.domain.wrapper.NickName;
+import com.pitter.domain.entity.bodyprofilehistory.BodyProfileHistory;
+import com.pitter.domain.entity.member.Member;
+import com.pitter.domain.entity.bodyprofilehistory.BodyProfile;
+import com.pitter.domain.entity.member.Email;
+import com.pitter.domain.entity.member.NickName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

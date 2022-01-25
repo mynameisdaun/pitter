@@ -1,6 +1,7 @@
-package com.pitter.domain.entity;
+package com.pitter.domain.entity.bodyprofilehistory;
 
-import com.pitter.domain.wrapper.BodyProfile;
+import com.pitter.domain.entity.BaseEntity;
+import com.pitter.domain.entity.member.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,6 @@ import javax.persistence.*;
 
 @Entity @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-//@ToString(callSuper = true)
 public class BodyProfileHistory extends BaseEntity {
 
     @Id

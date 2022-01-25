@@ -1,14 +1,12 @@
 package com.pitter.controller.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.pitter.domain.wrapper.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Data
 @AllArgsConstructor

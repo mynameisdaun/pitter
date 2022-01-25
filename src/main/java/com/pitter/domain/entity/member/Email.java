@@ -1,4 +1,4 @@
-package com.pitter.domain.wrapper;
+package com.pitter.domain.entity.member;
 
 import com.google.common.base.Strings;
 import lombok.*;

@@ -1,13 +1,13 @@
 package com.pitter.domain.repository;
 
-import com.pitter.domain.entity.BodyProfileHistory;
-import com.pitter.domain.wrapper.NickName;
+import com.pitter.domain.entity.bodyprofilehistory.BodyProfileHistory;
+import com.pitter.domain.entity.member.NickName;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.pitter.domain.entity.QBodyProfileHistory.bodyProfileHistory;
+import static com.pitter.domain.entity.bodyprofilehistory.QBodyProfileHistory.bodyProfileHistory;
 
 
 public class BodyProfileHistoryRepositoryImpl implements BodyProfileHistoryQDSL{

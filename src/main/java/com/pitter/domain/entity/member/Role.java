@@ -1,4 +1,4 @@
-package com.pitter.domain.entity;
+package com.pitter.domain.entity.member;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

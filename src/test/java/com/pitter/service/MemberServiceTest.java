@@ -1,11 +1,10 @@
 package com.pitter.service;
 
-import com.pitter.domain.entity.Member;
+import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.repository.MemberRepository;
-import com.pitter.domain.wrapper.Email;
-import com.pitter.domain.wrapper.NickName;
+import com.pitter.domain.entity.member.Email;
+import com.pitter.domain.entity.member.NickName;
 import com.pitter.exception.DuplicateMemberException;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

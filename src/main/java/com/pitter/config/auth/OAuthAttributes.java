@@ -1,9 +1,9 @@
 package com.pitter.config.auth;
 
-import com.pitter.domain.entity.Member;
-import com.pitter.domain.entity.Role;
-import com.pitter.domain.wrapper.Email;
-import com.pitter.domain.wrapper.NickName;
+import com.pitter.domain.entity.member.Member;
+import com.pitter.domain.entity.member.Role;
+import com.pitter.domain.entity.member.Email;
+import com.pitter.domain.entity.member.NickName;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -1,7 +1,6 @@
 package com.pitter.config.auth;
 
-import com.pitter.domain.entity.Member;
-import com.pitter.domain.entity.Token;
+import com.pitter.domain.entity.member.Member;
 import com.pitter.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

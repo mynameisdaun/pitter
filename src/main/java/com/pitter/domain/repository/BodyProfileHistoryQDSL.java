@@ -1,7 +1,7 @@
 package com.pitter.domain.repository;
 
-import com.pitter.domain.entity.BodyProfileHistory;
-import com.pitter.domain.wrapper.NickName;
+import com.pitter.domain.entity.bodyprofilehistory.BodyProfileHistory;
+import com.pitter.domain.entity.member.NickName;
 
 import java.time.LocalDateTime;
 import java.util.List;
