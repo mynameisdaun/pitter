@@ -5,6 +5,8 @@ import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.bodyprofilehistory.BodyProfile;
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.NickName;
+import com.pitter.domain.repository.bodyprofilehistory.BodyProfileHistoryRepository;
+import com.pitter.domain.repository.member.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -28,9 +30,11 @@ public class BodyProfileHistoryRepositoryTest {
 
     Logger logger = LoggerFactory.getLogger(BodyProfileHistoryRepositoryTest.class);
 
-    @Autowired BodyProfileHistoryRepository bodyProfileHistoryRepository;
+    @Autowired
+    BodyProfileHistoryRepository bodyProfileHistoryRepository;
 
-    @Autowired MemberRepository memberRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Autowired EntityManager em;
 

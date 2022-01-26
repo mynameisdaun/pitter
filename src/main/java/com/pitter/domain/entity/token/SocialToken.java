@@ -1,8 +1,5 @@
 package com.pitter.domain.entity.token;
 
-import com.google.common.base.Preconditions;
-import com.google.common.base.Strings;
-import com.pitter.utils.StringUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,9 +26,9 @@ public class SocialToken {
     private LocalDateTime socialRefreshTokenExpireAt;
 
     @Enumerated(EnumType.STRING)
-    private SocialType socialType;
+    private SocialProvider socialProvider;
 
-    public SocialToken(String socialAccessToken, Long socialAccessTokenExpiresIn, String socialRefreshToken, Long socialRefreshTokenExpiresIn, SocialType socialType) {
+    public SocialToken(String socialAccessToken, Long socialAccessTokenExpiresIn, String socialRefreshToken, Long socialRefreshTokenExpiresIn, SocialProvider socialProvider) {
         checkNullOrEmpty(socialAccessToken,"엑세스 토큰으로 빈 값이 올 수 없습니다.");
         checkNullOrEmpty(socialRefreshToken,"리프레쉬 토큰으로 빈 값이 올 수 없습니다.");
         LocalDateTime now = LocalDateTime.now();
@@ -39,7 +36,7 @@ public class SocialToken {
         this.socialAccessTokenExpireAt = now.plusSeconds(socialAccessTokenExpiresIn);
         this.socialRefreshToken = socialRefreshToken;
         this.socialRefreshTokenExpireAt = now.plusSeconds(socialRefreshTokenExpiresIn);
-        this.socialType = socialType;
+        this.socialProvider = socialProvider;
     }
 
 }

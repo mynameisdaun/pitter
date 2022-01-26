@@ -1,6 +1,7 @@
 package com.pitter.controller.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pitter.controller.api.member.MemberController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class MemberControllerTest {
 
-    @Autowired MemberController memberController;
+    @Autowired
+    MemberController memberController;
 
     @Autowired private MockMvc mockMvc;
 

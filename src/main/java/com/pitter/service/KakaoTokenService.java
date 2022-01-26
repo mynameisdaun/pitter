@@ -2,15 +2,19 @@ package com.pitter.service;
 
 import com.pitter.controller.dto.KakaoSignInResponse;
 import com.pitter.controller.dto.KakaoUserInfoResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class KakaoTokenService {
 
     @Value("${spring.security.oauth2.client.registration.kakao.client-id}") private String clientId;

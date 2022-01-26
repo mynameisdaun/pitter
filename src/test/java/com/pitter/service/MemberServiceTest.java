@@ -1,7 +1,7 @@
 package com.pitter.service;
 
 import com.pitter.domain.entity.member.Member;
-import com.pitter.domain.repository.MemberRepository;
+import com.pitter.domain.repository.member.MemberRepository;
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.NickName;
 import com.pitter.exception.DuplicateMemberException;

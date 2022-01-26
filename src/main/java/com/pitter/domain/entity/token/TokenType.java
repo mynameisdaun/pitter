@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum SocialType {
+public enum TokenType {
 
-    KAKAO("KAKAO"),
-    GOOGLE("GOOGLE"),
-    NAVER("NAVER"),
-    PITTER("PITTER");
+    ACCESS_TOKEN("accessToken"),
+    REFRESH_TOKEN("refreshToken");
 
     private final String key;
 }

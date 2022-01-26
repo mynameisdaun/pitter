@@ -1,4 +1,4 @@
-package com.pitter.controller.api;
+package com.pitter.controller.api.member;
 
 import com.pitter.controller.dto.MemberJoinRequest;
 import com.pitter.controller.dto.MemberJoinResponse;

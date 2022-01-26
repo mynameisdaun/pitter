@@ -1,10 +1,12 @@
 package com.pitter.service;
 
-import com.pitter.domain.repository.BodyProfileHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class BodyProfileService {
 
 

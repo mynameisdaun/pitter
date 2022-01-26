@@ -1,4 +1,4 @@
-package com.pitter.controller.api;
+package com.pitter.controller.api.bodyprofilehistory;
 
 import com.pitter.controller.dto.BodyProfileRequest;
 import com.pitter.controller.dto.BodyProfileResponse;
@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RestController
-public class BodyProfileController {
+public class BodyProfileHistoryController {
 
 
     @GetMapping("/bodyProfile")

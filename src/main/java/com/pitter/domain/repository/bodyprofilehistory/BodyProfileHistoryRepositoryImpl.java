@@ -1,7 +1,8 @@
-package com.pitter.domain.repository;
+package com.pitter.domain.repository.bodyprofilehistory;
 
 import com.pitter.domain.entity.bodyprofilehistory.BodyProfileHistory;
 import com.pitter.domain.entity.member.NickName;
+import com.pitter.domain.repository.bodyprofilehistory.BodyProfileHistoryQDSL;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.time.LocalDateTime;
@@ -10,7 +11,7 @@ import java.util.List;
 import static com.pitter.domain.entity.bodyprofilehistory.QBodyProfileHistory.bodyProfileHistory;
 
 
-public class BodyProfileHistoryRepositoryImpl implements BodyProfileHistoryQDSL{
+public class BodyProfileHistoryRepositoryImpl implements BodyProfileHistoryQDSL {
 
     private final JPAQueryFactory queryFactory;
 

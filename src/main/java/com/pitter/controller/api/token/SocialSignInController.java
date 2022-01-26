@@ -1,4 +1,4 @@
-package com.pitter.controller.api;
+package com.pitter.controller.api.token;
 
 import com.pitter.controller.dto.KakaoSignInResponse;
 import com.pitter.controller.dto.KakaoUserInfoResponse;
@@ -16,13 +16,13 @@ import java.net.URLEncoder;
 
 @Controller
 @RequiredArgsConstructor
-public class LoginController {
+public class SocialSignInController {
 
-    private final static Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private final static Logger logger = LoggerFactory.getLogger(SocialSignInController.class);
     private final KakaoTokenService kakaoTokenService;
 
     @GetMapping("/sign_in/kakao")
-    public String sign_in_kakao (HttpServletRequest request, HttpServletRequest response, @RequestParam("code") String authorization_code) throws UnsupportedEncodingException {
+    public String kakaoSignIn(HttpServletRequest request, HttpServletRequest response, @RequestParam("code") String authorization_code) throws UnsupportedEncodingException {
         KakaoSignInResponse kakaoAccessToken = kakaoTokenService.getAccessToken(authorization_code);
         KakaoUserInfoResponse kakaoUserInfoResponse = kakaoTokenService.getKakaoUserInfo(kakaoAccessToken.getAccess_token());
         String nickName = "&nickname="+kakaoUserInfoResponse.getNickname();

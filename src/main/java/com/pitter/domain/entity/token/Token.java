@@ -17,14 +17,17 @@ import java.util.Date;
 @Getter @ToString
 public class Token extends BaseEntity implements Serializable {
 
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "email")
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "token_id")
+    private Long id;
+
+    @OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = "email")
     private Member member;
 
-    @Embedded @NotBlank
+    @Embedded
     private InternalToken internalToken;
 
-    @Embedded @NotBlank
+    @Embedded
     private SocialToken socialToken;
 
     private Token(Member member, InternalToken internalToken, SocialToken socialToken) {
@@ -35,13 +38,5 @@ public class Token extends BaseEntity implements Serializable {
 
     public static Token generateToken(Member member, SocialToken socialToken) {
         return new Token(member, new InternalToken(member), socialToken);
-    }
-
-    public boolean isValidInternalAccessToken(Date date) {
-        return this.internalToken.isValidAccessToken(date);
-    }
-
-    public boolean isValidInternalRefreshToken(Date date) {
-        return this.internalToken.isValidRefreshToken(date);
     }
 }

@@ -5,17 +5,16 @@ import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.member.NickName;
 import com.pitter.domain.entity.member.Role;
 import com.pitter.domain.entity.token.InternalToken;
+import com.pitter.domain.entity.token.SocialProvider;
 import com.pitter.domain.entity.token.SocialToken;
-import com.pitter.domain.entity.token.SocialType;
 import com.pitter.domain.entity.token.Token;
+import com.pitter.utils.JwtUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,11 +40,12 @@ public class TokenTests {
         //given
         InternalToken internalToken = new InternalToken(member);
         SocialToken socialToken =
-                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialType.KAKAO);
+                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialProvider.KAKAO);
         Token token = Token.generateToken(member, socialToken);
         Date date = new Date();
         //when
-        boolean isValidToken = token.isValidInternalAccessToken(date);
+        //boolean isValidToken = token.isValidInternalAccessToken(date);
+        boolean isValidToken = JwtUtils.isValidToken();
         //then
         assertThat(isValidToken).isEqualTo(true);
     }
@@ -54,7 +54,7 @@ public class TokenTests {
     public void 만료된_내부_API_엑세스_토큰을_검증한다() {
         //given
         SocialToken socialToken =
-                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialType.KAKAO);
+                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialProvider.KAKAO);
         Token token = Token.generateToken(member, socialToken);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -70,7 +70,7 @@ public class TokenTests {
     public void 유효한_내부_API_리프레쉬_토큰을_검증한다() {
         //given
         SocialToken socialToken =
-                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialType.KAKAO);
+                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialProvider.KAKAO);
         Token token = Token.generateToken(member, socialToken);
         Date date = new Date();
         //when
@@ -83,7 +83,7 @@ public class TokenTests {
     public void 만료된_내부_API_리프레쉬_토큰을_검증한다() {
         //given
         SocialToken socialToken =
-                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialType.KAKAO);
+                new SocialToken("accessToken",50L,"refreshToken",1000L, SocialProvider.KAKAO);
         Token token = Token.generateToken(member, socialToken);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());

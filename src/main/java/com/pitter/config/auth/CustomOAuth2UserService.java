@@ -1,7 +1,7 @@
 package com.pitter.config.auth;
 
 import com.pitter.domain.entity.member.Role;
-import com.pitter.domain.repository.MemberRepository;
+import com.pitter.domain.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

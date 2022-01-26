@@ -3,6 +3,7 @@ package com.pitter.domain.repository;
 import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.NickName;
+import com.pitter.domain.repository.member.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
