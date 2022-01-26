@@ -30,4 +30,5 @@ public class Application {
         return new JPAQueryFactory(em);
     }
 
+    
 }

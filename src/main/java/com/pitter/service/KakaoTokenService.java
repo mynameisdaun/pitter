@@ -15,6 +15,7 @@ public class KakaoTokenService {
 
     @Value("${spring.security.oauth2.client.registration.kakao.client-id}") private String clientId;
     @Value("${spring.security.oauth2.client.registration.kakao.redirect-uri}") private String redirectUri;
+
     private final String authDomain = "https://kauth.kakao.com";
     private final String accessTokenUri = "/oauth/token";
     private final String apiDomain = "https://kapi.kakao.com";
@@ -51,8 +52,6 @@ public class KakaoTokenService {
         System.out.println(kakaoUserInfoResponse);
         return kakaoUserInfoResponse;
     }
-
-
 
     private String getAccessTokenRequestUrl(String authorization_code) {
         StringBuilder sb = new StringBuilder(accessTokenUri);

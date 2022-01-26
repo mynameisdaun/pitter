@@ -7,10 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,26 +22,26 @@ public class Token extends BaseEntity implements Serializable {
     private Member member;
 
     @Embedded @NotBlank
-    private InternalAccessToken internalAccessToken;
+    private InternalToken internalToken;
 
     @Embedded @NotBlank
-    private SocialAccessToken socialAccessToken;
+    private SocialToken socialToken;
 
-    private Token(Member member, InternalAccessToken internalAccessToken, SocialAccessToken socialAccessToken) {
+    private Token(Member member, InternalToken internalToken, SocialToken socialToken) {
         this.member = member;
-        this.internalAccessToken = internalAccessToken;
-        this.socialAccessToken = socialAccessToken;
+        this.internalToken = internalToken;
+        this.socialToken = socialToken;
     }
 
-    public static Token generateToken(Member member, SocialAccessToken socialAccessToken) {
-        return new Token(member, new InternalAccessToken(member), socialAccessToken);
+    public static Token generateToken(Member member, SocialToken socialToken) {
+        return new Token(member, new InternalToken(member), socialToken);
     }
 
-    public boolean isValidInternalAccessToken() {
-        return this.internalAccessToken.isValidAccessToken();
+    public boolean isValidInternalAccessToken(Date date) {
+        return this.internalToken.isValidAccessToken(date);
     }
 
-    public boolean isValidInternalRefreshToken() {
-        return this.internalAccessToken.isValidRefreshToken();
+    public boolean isValidInternalRefreshToken(Date date) {
+        return this.internalToken.isValidRefreshToken(date);
     }
 }
