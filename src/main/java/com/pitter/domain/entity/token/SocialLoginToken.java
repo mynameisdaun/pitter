@@ -15,7 +15,7 @@ import static com.pitter.utils.StringUtils.*;
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter @ToString
-public class SocialToken {
+public class SocialLoginToken {
 
     private String socialAccessToken;
 
@@ -28,7 +28,7 @@ public class SocialToken {
     @Enumerated(EnumType.STRING)
     private SocialProvider socialProvider;
 
-    public SocialToken(String socialAccessToken, Long socialAccessTokenExpiresIn, String socialRefreshToken, Long socialRefreshTokenExpiresIn, SocialProvider socialProvider) {
+    public SocialLoginToken(String socialAccessToken, Long socialAccessTokenExpiresIn, String socialRefreshToken, Long socialRefreshTokenExpiresIn, SocialProvider socialProvider) {
         checkNullOrEmpty(socialAccessToken,"엑세스 토큰으로 빈 값이 올 수 없습니다.");
         checkNullOrEmpty(socialRefreshToken,"리프레쉬 토큰으로 빈 값이 올 수 없습니다.");
         LocalDateTime now = LocalDateTime.now();

@@ -1,28 +1,24 @@
 package com.pitter.utils;
 
-import com.pitter.domain.entity.member.Member;
-import com.pitter.domain.entity.token.SocialToken;
+import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.token.TokenType;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 
+@Slf4j
 public class JwtUtils {
 
     private static final String jwtSecretKey = PropertiesUtils.getJwtSecretKey();
     private static final Long accessTokenPeriod = PropertiesUtils.getJwtAccessTokenPeriod();
     private static final Long refreshTokenPeriod = PropertiesUtils.getJwtRefreshTokenPeriod();
 
-    public static String jwtTokenBuilder(Member member, TokenType tokenType) {
+    public static String jwtTokenBuilder(Email email, TokenType tokenType) {
         Claims claims = Jwts.claims()
-                .setSubject(member.getEmail().getEmail());
-        claims.put("role", member.getRole().getRole());
+                .setSubject(email.getEmail());
         Date now = new Date();
         Long tokenPeriod = isAccessToken(tokenType) ? accessTokenPeriod : refreshTokenPeriod;
-
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
@@ -31,16 +27,26 @@ public class JwtUtils {
                 .compact();
     }
 
-    public static boolean isValidToken(String token, Date date) {
+    public static boolean isValidToken(Email email, String token,Date date) {
         try {
-            Jws<Claims> claims = Jwts.parser()
+            Claims claims = Jwts.parser()
                     .setSigningKey(jwtSecretKey)
-                    .parseClaimsJws(token);
-            return claims.getBody()
-                    .getExpiration()
-                    .after(date);
-        } catch (Exception e) {
-            e.printStackTrace();
+                    .parseClaimsJws(token).getBody();
+
+            return claims.getExpiration()
+                        .after(date)
+                    && claims.getSubject()
+                        .equals(email.getEmail());
+        } catch (SignatureException ex) {
+            log.error("Invalid JWT signature");
+        } catch (MalformedJwtException ex) {
+            log.error("Invalid JWT token");
+        } catch (ExpiredJwtException ex) {
+            log.error("Expired JWT token");
+        } catch (UnsupportedJwtException ex) {
+            log.error("Unsupported JWT token");
+        } catch (IllegalArgumentException ex) {
+            log.error("JWT claims string is empty.");
         }
         return false;
     }

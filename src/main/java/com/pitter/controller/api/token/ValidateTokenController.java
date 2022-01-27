@@ -2,10 +2,6 @@ package com.pitter.controller.api.token;
 
 import com.pitter.controller.dto.TokenValidateRequest;
 import com.pitter.controller.dto.TokenValidateResponse;
-import com.pitter.domain.entity.member.Email;
-import com.pitter.domain.entity.member.Member;
-import com.pitter.domain.entity.token.TokenType;
-import com.pitter.service.MemberService;
 import com.pitter.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +18,14 @@ import javax.validation.Valid;
 public class ValidateTokenController {
 
     private final TokenService tokenService;
-    private final MemberService memberService;
 
     @PostMapping("/oauth/token")
-    public ResponseEntity<TokenValidateResponse> validateToken(HttpServletRequest request, HttpServletResponse response, @Valid @RequestBody TokenValidateRequest tokenValidateRequest) {
-        Email email = tokenValidateRequest.getEmail();
-        String token = tokenValidateRequest.getToken();
-        if(tokenValidateRequest.getTokenType() == TokenType.REFRESH_TOKEN) {
-            tokenService.validateRefreshToken(email, token);
-        }
-        tokenService.validateAccessToken(email, token);
-        return ResponseEntity.of();
+    public ResponseEntity<TokenValidateResponse> validateToken(HttpServletRequest req, HttpServletResponse res, @RequestBody TokenValidateRequest tokenValidateRequest) {
+        System.out.println("[========== we are debugging 0 ==========]");
+        System.out.println(tokenValidateRequest.toString());
+        TokenValidateResponse response = tokenService.validate(tokenValidateRequest.toTokenEntity());
+        System.out.println("[========== we are debugging 4 ==========]");
+        return ResponseEntity.ok().body(response);
     }
 
 }

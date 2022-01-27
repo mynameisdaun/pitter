@@ -29,8 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class MemberControllerTest {
 
-    @Autowired
-    MemberController memberController;
+    @Autowired MemberController memberController;
 
     @Autowired private MockMvc mockMvc;
 

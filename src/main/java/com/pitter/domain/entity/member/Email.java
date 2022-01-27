@@ -2,6 +2,7 @@ package com.pitter.domain.entity.member;
 
 import com.google.common.base.Strings;
 import lombok.*;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.Embeddable;
 import java.util.regex.Matcher;

@@ -2,6 +2,7 @@ package com.pitter.domain.entity.token;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @RequiredArgsConstructor

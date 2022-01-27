@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @AllArgsConstructor @Getter
 public class TokenValidateResponse {
-    private String message;
     private String code;
+    private String message;
 }
