@@ -4,7 +4,9 @@ import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.token.Token;
 
+import java.util.Optional;
+
 public interface TokenQDSL {
-    Token findByEmail(Email email);
-    Token findByMember(Member member);
+    Optional<Token> findByEmail(Email email);
+    Optional<Token> findByMember(Member member);
 }

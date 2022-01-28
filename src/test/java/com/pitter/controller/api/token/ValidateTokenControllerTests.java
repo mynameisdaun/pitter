@@ -183,7 +183,7 @@ public class ValidateTokenControllerTests {
         MockHttpServletResponse response = mockMvc.perform(post("/oauth/token")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(requestBody)))
-                .andExpect(status().isOk())
+                .andExpect(status().isBadRequest())
                 .andReturn()
                 .getResponse();
         //then

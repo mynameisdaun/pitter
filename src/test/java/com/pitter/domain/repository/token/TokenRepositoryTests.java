@@ -1,5 +1,6 @@
 package com.pitter.domain.repository.token;
 
+import com.pitter.common.exception.UnIdentifiedRefreshTokenException;
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.member.NickName;
@@ -39,7 +40,7 @@ public class TokenRepositoryTests {
         tokenRepository.saveAndFlush(token);
 
         //when
-        Token findToken = tokenRepository.findByMember(member);
+        Token findToken = tokenRepository.findByMember(member).orElseThrow(UnIdentifiedRefreshTokenException::new);
 
         //then
         assertEquals(token,findToken);
@@ -56,7 +57,8 @@ public class TokenRepositoryTests {
         tokenRepository.saveAndFlush(token);
 
         //when
-        Token findToken = tokenRepository.findByEmail(email);
+        Token findToken = tokenRepository.findByEmail(email)
+                .orElseThrow(UnIdentifiedRefreshTokenException::new);
 
         //then
         assertEquals(token,findToken);

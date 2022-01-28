@@ -1,6 +1,8 @@
 package com.pitter.controller.api.advice;
 
+import com.pitter.common.exception.InvalidRefreshTokenException;
 import com.pitter.common.exception.InvalidSubjectEmailException;
+import com.pitter.common.exception.UnIdentifiedRefreshTokenException;
 import com.pitter.controller.dto.TokenValidateResponse;
 import com.pitter.common.exception.TokenTypeException;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -39,4 +41,12 @@ public class TokenExceptionHandler {
         log.error("handler Exception: {}", e.getMessage());
         return ResponseEntity.badRequest().body(INVALID_SIGNATURE.toDto());
     }
+
+    @ExceptionHandler(UnIdentifiedRefreshTokenException.class)
+    public ResponseEntity<TokenValidateResponse> handlerInvalidRefreshTokenException(final UnIdentifiedRefreshTokenException e) {
+        log.error("handler Exception: {}", e.getMessage());
+        return ResponseEntity.badRequest().body(UNIDENTIFIED_REFRESH_TOKEN.toDto());
+    }
+
+
 }
