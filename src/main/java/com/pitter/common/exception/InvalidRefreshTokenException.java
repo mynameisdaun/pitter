@@ -1,4 +1,4 @@
-package com.pitter.exception;
+package com.pitter.common.exception;
 
 public class InvalidRefreshTokenException extends RuntimeException{
 

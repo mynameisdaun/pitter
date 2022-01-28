@@ -3,8 +3,6 @@ package com.pitter.domain.entity.token;
 import com.pitter.controller.dto.TokenCode;
 import com.pitter.domain.entity.BaseEntity;
 import com.pitter.domain.entity.member.Member;
-import com.pitter.utils.DateUtils;
-import com.pitter.utils.JwtUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,10 +11,11 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import static com.pitter.controller.dto.TokenCode.*;
-import static com.pitter.utils.DateUtils.*;
-import static com.pitter.utils.JwtUtils.*;
+import static com.pitter.common.utils.DateUtils.*;
+import static com.pitter.common.utils.JwtUtils.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -43,7 +42,12 @@ public class Token extends BaseEntity implements Serializable {
     }
 
     public static Token generateToken(Member member, SocialLoginToken socialLoginToken) {
-        return new Token(member, new InternalApiRequestToken(member.getEmail(),TokenType.REFRESH_TOKEN, jwtTokenBuilder(member.getEmail(), TokenType.REFRESH_TOKEN)), socialLoginToken);
+        //TODO jwt 토큰 생성에 날짜를 주입하는 것에 대해서 생각해봐야 한다..
+        return new Token(
+                member,
+                new InternalApiRequestToken(member.getEmail(),TokenType.REFRESH_TOKEN, jwtTokenBuilder(member.getEmail(), TokenType.REFRESH_TOKEN, new Date())),
+                socialLoginToken
+        );
     }
 
     public TokenCode isValidRefreshToken(InternalApiRequestToken internalApiRequestToken) {

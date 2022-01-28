@@ -1,4 +1,4 @@
-package com.pitter.utils;
+package com.pitter.common.utils;
 
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.token.TokenType;
@@ -14,10 +14,9 @@ public class JwtUtils {
     private static final Long accessTokenPeriod = PropertiesUtils.getJwtAccessTokenPeriod();
     private static final Long refreshTokenPeriod = PropertiesUtils.getJwtRefreshTokenPeriod();
 
-    public static String jwtTokenBuilder(Email email, TokenType tokenType) {
+    public static String jwtTokenBuilder(Email email, TokenType tokenType, Date now) {
         Claims claims = Jwts.claims()
                 .setSubject(email.getEmail());
-        Date now = new Date();
         Long tokenPeriod = isAccessToken(tokenType) ? accessTokenPeriod : refreshTokenPeriod;
         return Jwts.builder()
                 .setClaims(claims)

@@ -20,11 +20,9 @@ public class ValidateTokenController {
     private final TokenService tokenService;
 
     @PostMapping("/oauth/token")
-    public ResponseEntity<TokenValidateResponse> validateToken(HttpServletRequest req, HttpServletResponse res, @RequestBody TokenValidateRequest tokenValidateRequest) {
-        System.out.println("[========== we are debugging 0 ==========]");
-        System.out.println(tokenValidateRequest.toString());
+    public ResponseEntity<TokenValidateResponse> validateToken(HttpServletRequest req, HttpServletResponse res,
+                                                               @Valid @RequestBody TokenValidateRequest tokenValidateRequest) {
         TokenValidateResponse response = tokenService.validate(tokenValidateRequest.toTokenEntity());
-        System.out.println("[========== we are debugging 4 ==========]");
         return ResponseEntity.ok().body(response);
     }
 

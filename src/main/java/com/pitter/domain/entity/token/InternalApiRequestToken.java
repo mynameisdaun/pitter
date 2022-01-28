@@ -1,9 +1,6 @@
 package com.pitter.domain.entity.token;
 
 import com.pitter.domain.entity.member.Email;
-import com.pitter.domain.entity.member.Member;
-import com.pitter.utils.JwtUtils;
-import com.pitter.utils.PropertiesUtils;
 import io.jsonwebtoken.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +10,7 @@ import javax.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import static com.pitter.utils.PropertiesUtils.*;
+import static com.pitter.common.utils.PropertiesUtils.*;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -62,14 +59,10 @@ public class InternalApiRequestToken {
 //    }
 
     public boolean isExpired(Date date) {
-        return claims.getExpiration()
-                .after(date);
-    }
-
-    public boolean isValidSubject() {
-        System.out.println("[========== we are debugging 2 ==========]");
-            return claims.getSubject()
-                    .equals(email.getEmail());
+        return  claims.getSubject()
+                    .equals(email.getEmail())
+            && !claims.getExpiration()
+                    .after(date);
     }
 
     private LocalDateTime setTokenExpireDate(TokenType tokenType) {

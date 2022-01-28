@@ -1,4 +1,4 @@
-package com.pitter.utils;
+package com.pitter.common.utils;
 
 public class StringUtils {
 

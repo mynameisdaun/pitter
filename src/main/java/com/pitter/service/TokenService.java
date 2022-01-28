@@ -2,17 +2,17 @@ package com.pitter.service;
 
 import com.pitter.controller.dto.TokenValidateResponse;
 import com.pitter.domain.entity.token.InternalApiRequestToken;
-import com.pitter.domain.entity.token.Token;
 import com.pitter.domain.entity.token.TokenType;
 import com.pitter.domain.repository.token.TokenRepository;
-import com.pitter.exception.InvalidRefreshTokenException;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 import static com.pitter.controller.dto.TokenCode.*;
-import static com.pitter.utils.DateUtils.*;
+import static com.pitter.common.utils.DateUtils.now;
 
 @Service
 @RequiredArgsConstructor
@@ -22,10 +22,19 @@ public class TokenService {
 
     public TokenValidateResponse validate(InternalApiRequestToken internalApiRequestToken) {
         TokenType tokenType = internalApiRequestToken.getTokenType();
-        //토큰의 실 소유자와 API를 요청한 아이디가 다른 경우
-        System.out.println("[========== we are debugging 1 ==========]");
-        if(internalApiRequestToken.isValidSubject()) {
+
+
+        try{
+            internalApiRequestToken.isExpired(now());
+        } catch(ExpiredJwtException e) {
+            if(internalApiRequestToken.getTokenType()==TokenType.ACCESS_TOKEN) {
+                return EXPIRED_ACCESS_TOKEN.toDto();
+            }
+            return EXPIRED_REFRESH_TOKEN.toDto();
+        } catch(SignatureException e) {
             return INVALID_SIGNATURE.toDto();
+        } catch(Exception e) {
+            return INVALID_TOKEN_FORMAT.toDto();
         }
 
         if(tokenType==TokenType.ACCESS_TOKEN) {

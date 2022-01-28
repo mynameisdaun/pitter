@@ -10,7 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 
-import static com.pitter.utils.StringUtils.*;
+import static com.pitter.common.utils.StringUtils.*;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

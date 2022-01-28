@@ -3,42 +3,41 @@ package com.pitter.controller.dto;
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.token.InternalApiRequestToken;
 import com.pitter.domain.entity.token.TokenType;
+import com.pitter.common.exception.TokenTypeException;
 import lombok.*;
-import org.apache.commons.lang3.EnumUtils;
-import javax.validation.constraints.NotNull;
 
-@NoArgsConstructor
-@ToString @Getter
+import javax.validation.constraints.NotBlank;
+
+import static com.pitter.domain.entity.token.TokenType.*;
+
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString @Getter @Setter
 public class TokenValidateRequest {
-    @NotNull Email email;
-    @NotNull String token;
-    @NotNull TokenType tokenType;
 
-    private void validateTokenType(TokenType tokenType) {
-        if(EnumUtils.isValidEnumIgnoreCase(TokenType.class, tokenType.getKey())) {
-            throw new IllegalArgumentException("토큰 타입은 반드시 accessToken 혹은 refreshToken 이어야 합니다.");
-        }
-    }
-
-    public InternalApiRequestToken toTokenEntity() {
-        return new InternalApiRequestToken(email, tokenType, token);
-    }
+    @NotBlank String email;
+    @NotBlank String token;
+    @NotBlank String tokenType;
 
     public void setEmail(String email) {
-        this.email = new Email(email);
+        this.email = email;
     }
 
     public void setToken(String token) {
         this.token = token;
     }
 
-    public void setTokenType(String tokenType) {
-        if(tokenType.equals(TokenType.ACCESS_TOKEN.getKey())){
-            this.tokenType = TokenType.ACCESS_TOKEN;
-        } else {
-            this.tokenType = TokenType.REFRESH_TOKEN;
+    public InternalApiRequestToken toTokenEntity() {
+        return new InternalApiRequestToken(new Email(email), validateTokenType(tokenType), token);
+    }
+
+    private TokenType validateTokenType(String tokenType) {
+        if(tokenType.equals(ACCESS_TOKEN.getKey())) {
+            return ACCESS_TOKEN;
         }
-        validateTokenType(this.tokenType);
+        if (tokenType.equals(REFRESH_TOKEN.getKey())) {
+            return REFRESH_TOKEN;
+        } else {
+            throw new TokenTypeException("허용되지 않은 토큰 타입입니다.");
+        }
     }
 }
-
