@@ -19,7 +19,6 @@ public class InternalApiRequestToken {
 
     @Transient private Email email;
     @Transient private TokenType tokenType;
-    @Transient private Claims claims;
     private String token;
     private LocalDateTime tokenExpireAt;
 
@@ -28,10 +27,6 @@ public class InternalApiRequestToken {
         this.token = token;
         this.tokenType = tokenType;
         this.tokenExpireAt = setTokenExpireDate(tokenType);
-        System.out.println("getJwtSecretKey: "+getJwtSecretKey());
-        System.out.println("token: "+token);
-        this.claims = Jwts.parser().setSigningKey(getJwtSecretKey()).parseClaimsJws(token).getBody();
-        System.out.println("debug please");
     }
 
 //    public boolean isValidToken(Date date) {
@@ -58,7 +53,8 @@ public class InternalApiRequestToken {
 //        return false;
 //    }
 
-    public boolean isExpired(Date date) {
+    public boolean isExpired(Date date) throws JwtException {
+        Claims claims = Jwts.parser().setSigningKey(getJwtSecretKey().getBytes()).parseClaimsJws(token).getBody();
         return  claims.getSubject()
                     .equals(email.getEmail())
             && !claims.getExpiration()

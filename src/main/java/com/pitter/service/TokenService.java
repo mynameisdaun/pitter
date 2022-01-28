@@ -10,6 +10,7 @@ import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.NestedServletException;
 
 import static com.pitter.controller.dto.TokenCode.*;
 import static com.pitter.common.utils.DateUtils.now;
@@ -27,16 +28,17 @@ public class TokenService {
         try{
             internalApiRequestToken.isExpired(now());
         } catch(ExpiredJwtException e) {
-            if(internalApiRequestToken.getTokenType()==TokenType.ACCESS_TOKEN) {
+            if (internalApiRequestToken.getTokenType() == TokenType.ACCESS_TOKEN) {
                 return EXPIRED_ACCESS_TOKEN.toDto();
             }
-            return EXPIRED_REFRESH_TOKEN.toDto();
+                return EXPIRED_REFRESH_TOKEN.toDto();
         } catch(SignatureException e) {
+            e.printStackTrace();
             return INVALID_SIGNATURE.toDto();
-        } catch(Exception e) {
-            return INVALID_TOKEN_FORMAT.toDto();
-        }
-
+//        } catch(Exception e) {
+//            return INVALID_TOKEN_FORMAT.toDto();
+//        }
+    }
         if(tokenType==TokenType.ACCESS_TOKEN) {
             return validateAccessToken(internalApiRequestToken);
         }

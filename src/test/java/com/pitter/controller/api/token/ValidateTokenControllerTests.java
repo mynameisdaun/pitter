@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.util.NestedServletException;
 
 import java.util.Date;
 import java.util.Map;
@@ -84,7 +85,7 @@ public class ValidateTokenControllerTests {
     }
 
     @Test
-    public void 만됴된_엑세스토큰을_검증한다 () throws Exception {
+    public void 만료된_엑세스토큰을_검증한다 () throws Exception {
         //given
         tokenType = TokenType.ACCESS_TOKEN;
         token = JwtUtils.jwtTokenBuilder(email, tokenType, oneMonthBefore());
@@ -101,9 +102,22 @@ public class ValidateTokenControllerTests {
                 .andReturn()
                 .getResponse();
         //then
-        assertThat(response.getContentAsString(), containsString(SUCCESS.getCode()));
-        assertThat(response.getContentAsString(), containsString(SUCCESS.getMessage()));
+        assertThat(response.getContentAsString(), containsString(EXPIRED_ACCESS_TOKEN.getCode()));
+        assertThat(response.getContentAsString(), containsString(EXPIRED_ACCESS_TOKEN.getMessage()));
     }
+    
+    @Test
+    public void 잘못된_SignatureKey를_검증한다 () throws Exception {
+        //given
+        
+                
+        //when
+        
+                
+        //then
+        
+
+    }   
 
     @Test
     public void 잘못된_요청_검증_INVALID_TOKEN_TYPE () throws Exception {
