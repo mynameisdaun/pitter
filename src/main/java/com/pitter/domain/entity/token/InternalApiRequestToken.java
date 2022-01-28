@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 import static com.pitter.common.utils.PropertiesUtils.*;
@@ -21,13 +22,13 @@ public class InternalApiRequestToken {
     @Transient private Email email;
     @Transient private TokenType tokenType;
     private String token;
-    private LocalDateTime tokenExpireAt;
+    private Date tokenExpireAt;
 
     public InternalApiRequestToken(Email email, TokenType tokenType, String token) {
         this.email = email;
         this.token = token;
         this.tokenType = tokenType;
-        this.tokenExpireAt = setTokenExpireDate(tokenType);
+        this.tokenExpireAt = setTokenExpireDate();
     }
 
     public boolean isValid(Date date) throws JwtException {
@@ -38,12 +39,14 @@ public class InternalApiRequestToken {
         return !claims.getExpiration().after(date);
     }
 
-    private LocalDateTime setTokenExpireDate(TokenType tokenType) {
-        LocalDateTime now = LocalDateTime.now();
-        if(tokenType==TokenType.ACCESS_TOKEN) {
-            return now.plusSeconds(getJwtAccessTokenPeriod());
+    private Date setTokenExpireDate() {
+        try {
+            Claims claims = Jwts.parser().setSigningKey(getJwtSecretKey().getBytes()).parseClaimsJws(token).getBody();
+            return claims.getExpiration();
+        } catch (ExpiredJwtException e) {
+            return new Date();
         }
-        return now.plusSeconds(getJwtRefreshTokenPeriod());
+
     }
 
     @Override

@@ -2,10 +2,10 @@ package com.pitter.service;
 
 import com.pitter.controller.dto.TokenValidateResponse;
 import com.pitter.domain.entity.token.InternalApiRequestToken;
+import com.pitter.domain.entity.token.Token;
 import com.pitter.domain.entity.token.TokenType;
 import com.pitter.domain.repository.token.TokenRepository;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.SignatureException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,11 +44,22 @@ public class TokenService {
         catch(ExpiredJwtException e) {
             return EXPIRED_REFRESH_TOKEN.toDto();
         }
-
-
-
-
+        if(!matchedWithDB(internalApiRequestToken)){
+            return UNIDENTIFIED_REFRESH_TOKEN.toDto();
+        }
         return SUCCESS.toDto();
+    }
+
+    private boolean matchedWithDB(InternalApiRequestToken internalApiRequestToken) {
+        Token token = tokenRepository.findByEmail(internalApiRequestToken.getEmail());
+        System.out.println("expirationtime from request: "+internalApiRequestToken.getTokenExpireAt());
+        System.out.println("expirationtime from db: "+token.getInternalApiRequestToken().getTokenExpireAt());
+        System.out.println(token.getInternalApiRequestToken().getTokenExpireAt().getTime()==internalApiRequestToken.getTokenExpireAt().getTime());
+        System.out.println(token.getInternalApiRequestToken().getToken().equals(internalApiRequestToken.getToken()));
+        return token.getInternalApiRequestToken()
+                .getToken()
+                .equals(internalApiRequestToken.getToken())
+            && token.getInternalApiRequestToken().getTokenExpireAt().getTime() == internalApiRequestToken.getTokenExpireAt().getTime();
     }
 
     private boolean isAccessToken(TokenType tokenType) {

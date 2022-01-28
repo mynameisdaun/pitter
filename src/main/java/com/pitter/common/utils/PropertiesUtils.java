@@ -15,7 +15,6 @@ public class PropertiesUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("from propertiUtils: "+configuration.getProperty("com.pitter.jwtSecretKey"));
         return configuration.getProperty("com.pitter.jwtSecretKey");
     }
 

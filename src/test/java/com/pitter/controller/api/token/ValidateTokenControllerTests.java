@@ -2,10 +2,15 @@ package com.pitter.controller.api.token;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
-import com.pitter.common.utils.DateUtils;
-import com.pitter.domain.entity.member.Email;
-import com.pitter.domain.entity.token.TokenType;
 import com.pitter.common.utils.JwtUtils;
+import com.pitter.domain.entity.member.Email;
+import com.pitter.domain.entity.member.Member;
+import com.pitter.domain.entity.member.NickName;
+import com.pitter.domain.entity.member.Role;
+import com.pitter.domain.entity.token.*;
+import com.pitter.domain.repository.member.MemberRepository;
+import com.pitter.domain.repository.token.TokenRepository;
+import io.jsonwebtoken.JwtException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,12 +25,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.util.NestedServletException;
 
-import java.util.Date;
 import java.util.Map;
 
-import static com.pitter.common.utils.DateUtils.*;
+import static com.pitter.common.utils.DateUtils.now;
+import static com.pitter.common.utils.DateUtils.oneMonthBefore;
 import static com.pitter.controller.dto.TokenCode.*;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertThat;
@@ -47,6 +51,11 @@ public class ValidateTokenControllerTests {
 
     @Autowired WebApplicationContext context;
 
+    @Autowired private TokenRepository tokenRepository;
+
+    @Autowired private MemberRepository memberRepository;
+
+    private Member member;
     private Email email;
     private TokenType tokenType;
     private String token;
@@ -104,6 +113,82 @@ public class ValidateTokenControllerTests {
         //then
         assertThat(response.getContentAsString(), containsString(EXPIRED_ACCESS_TOKEN.getCode()));
         assertThat(response.getContentAsString(), containsString(EXPIRED_ACCESS_TOKEN.getMessage()));
+    }
+
+    @Test
+    public void 유효한_리프레쉬_토큰을_검증한다 () throws Exception {
+        //given
+        Member member = Member.createMember(new NickName("테스터"), email,"oAuthPassword1!", Role.USER);
+        SocialLoginToken socialLoginToken = new SocialLoginToken("ACCESS_TOKEN",5000L,"REFRESH_TOKEN",5000L, SocialProvider.PITTER);
+        Token tokenEntity = Token.generateToken(member, socialLoginToken);
+        memberRepository.save(member);
+        tokenRepository.saveAndFlush(tokenEntity);
+        InternalApiRequestToken internalApiRequestToken = tokenEntity.getInternalApiRequestToken();
+
+        tokenType = TokenType.REFRESH_TOKEN;
+        token = internalApiRequestToken.getToken();
+        requestBody.put("email", email.getEmail());
+        requestBody.put("token", token);
+        requestBody.put("tokenType", tokenType.getKey());
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(post("/oauth/token")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse();
+        //then
+        assertThat(response.getContentAsString(), containsString(SUCCESS.getCode()));
+        assertThat(response.getContentAsString(), containsString(SUCCESS.getMessage()));
+    }
+
+    @Test
+    public void 만료된_리프레쉬_토큰을_검증한다 () throws Exception {
+        //given
+        Member member = Member.createMember(new NickName("테스터"), email,"oAuthPassword1!", Role.USER);
+        SocialLoginToken socialLoginToken = new SocialLoginToken("ACCESS_TOKEN",5000L,"REFRESH_TOKEN",5000L, SocialProvider.PITTER);
+        Token tokenEntity = Token.generateToken(member, socialLoginToken);
+        memberRepository.save(member);
+        tokenRepository.saveAndFlush(tokenEntity);
+
+        tokenType = TokenType.REFRESH_TOKEN;
+        token = JwtUtils.jwtTokenBuilder(email, tokenType, oneMonthBefore());
+        requestBody.put("email", email.getEmail());
+        requestBody.put("token", token);
+        requestBody.put("tokenType", tokenType.getKey());
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(post("/oauth/token")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse();
+        //then
+        assertThat(response.getContentAsString(), containsString(EXPIRED_REFRESH_TOKEN.getMessage()));
+        assertThat(response.getContentAsString(), containsString(EXPIRED_REFRESH_TOKEN.getMessage()));
+    }
+
+    @Test
+    public void DB에_존재하지_않는_리프레쉬_토큰을_검증한다 () throws Exception {
+        //given
+        tokenType = TokenType.REFRESH_TOKEN;
+        token = JwtUtils.jwtTokenBuilder(email, tokenType, now());
+        requestBody.put("email", email.getEmail());
+        requestBody.put("token", token);
+        requestBody.put("tokenType", tokenType.getKey());
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(post("/oauth/token")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse();
+        //then
+        assertThat(response.getContentAsString(), containsString(UNIDENTIFIED_REFRESH_TOKEN.getCode()));
+        assertThat(response.getContentAsString(), containsString(UNIDENTIFIED_REFRESH_TOKEN.getMessage()));
     }
 
     @Test

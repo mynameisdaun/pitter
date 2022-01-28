@@ -43,21 +43,12 @@ public class Token extends BaseEntity implements Serializable {
 
     public static Token generateToken(Member member, SocialLoginToken socialLoginToken) {
         //TODO jwt 토큰 생성에 날짜를 주입하는 것에 대해서 생각해봐야 한다..
+        Date now = new Date();
+        System.out.println("from Date:"+now.getTime());
         return new Token(
                 member,
-                new InternalApiRequestToken(member.getEmail(),TokenType.REFRESH_TOKEN, jwtTokenBuilder(member.getEmail(), TokenType.REFRESH_TOKEN, new Date())),
+                new InternalApiRequestToken(member.getEmail(),TokenType.REFRESH_TOKEN, jwtTokenBuilder(member.getEmail(), TokenType.REFRESH_TOKEN, now)),
                 socialLoginToken
         );
-    }
-
-    public TokenCode isValidRefreshToken(InternalApiRequestToken internalApiRequestToken) {
-        if(this.internalApiRequestToken.getEmail() != internalApiRequestToken.getEmail()) {
-            return INVALID_SIGNATURE;
-        }
-        if(this.internalApiRequestToken.getTokenExpireAt().isBefore(LocalDateTime.now())
-             && internalApiRequestToken.isValid(now())) {
-            return EXPIRED_REFRESH_TOKEN;
-        }
-        return SUCCESS;
     }
 }
