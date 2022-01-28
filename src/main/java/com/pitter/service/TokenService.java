@@ -5,12 +5,9 @@ import com.pitter.domain.entity.token.InternalApiRequestToken;
 import com.pitter.domain.entity.token.TokenType;
 import com.pitter.domain.repository.token.TokenRepository;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.NestedServletException;
 
 import static com.pitter.controller.dto.TokenCode.*;
 import static com.pitter.common.utils.DateUtils.now;
@@ -24,41 +21,37 @@ public class TokenService {
     public TokenValidateResponse validate(InternalApiRequestToken internalApiRequestToken) {
         TokenType tokenType = internalApiRequestToken.getTokenType();
 
-
-        try{
-            internalApiRequestToken.isExpired(now());
-        } catch(ExpiredJwtException e) {
-            if (internalApiRequestToken.getTokenType() == TokenType.ACCESS_TOKEN) {
-                return EXPIRED_ACCESS_TOKEN.toDto();
-            }
-                return EXPIRED_REFRESH_TOKEN.toDto();
-        } catch(SignatureException e) {
-            e.printStackTrace();
-            return INVALID_SIGNATURE.toDto();
-//        } catch(Exception e) {
-//            return INVALID_TOKEN_FORMAT.toDto();
-//        }
-    }
-        if(tokenType==TokenType.ACCESS_TOKEN) {
+        if(isAccessToken(tokenType)) {
             return validateAccessToken(internalApiRequestToken);
         }
         return validateRefreshToken(internalApiRequestToken);
     }
 
     private TokenValidateResponse validateAccessToken(InternalApiRequestToken internalApiRequestToken) {
-        if(internalApiRequestToken.isExpired(now())){
+        try{
+            internalApiRequestToken.isValid(now());
+        }
+        catch(ExpiredJwtException e) {
             return EXPIRED_ACCESS_TOKEN.toDto();
         }
         return SUCCESS.toDto();
     }
 
     private TokenValidateResponse validateRefreshToken(InternalApiRequestToken internalApiRequestToken) {
-        if(internalApiRequestToken.isExpired(now())){
-            return EXPIRED_ACCESS_TOKEN.toDto();
+        try{
+            internalApiRequestToken.isValid(now());
         }
-//        Token token = tokenRepository.findByEmail(internalApiRequestToken.getEmail())
-//                .orElseThrow(InvalidRefreshTokenException::new);
-//        return token.isValidRefreshToken(internalApiRequestToken).toDto();
-        return null;
+        catch(ExpiredJwtException e) {
+            return EXPIRED_REFRESH_TOKEN.toDto();
+        }
+
+
+
+
+        return SUCCESS.toDto();
+    }
+
+    private boolean isAccessToken(TokenType tokenType) {
+        return tokenType == TokenType.ACCESS_TOKEN;
     }
 }

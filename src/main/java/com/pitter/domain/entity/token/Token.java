@@ -55,7 +55,7 @@ public class Token extends BaseEntity implements Serializable {
             return INVALID_SIGNATURE;
         }
         if(this.internalApiRequestToken.getTokenExpireAt().isBefore(LocalDateTime.now())
-             && internalApiRequestToken.isExpired(now())) {
+             && internalApiRequestToken.isValid(now())) {
             return EXPIRED_REFRESH_TOKEN;
         }
         return SUCCESS;

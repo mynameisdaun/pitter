@@ -105,18 +105,49 @@ public class ValidateTokenControllerTests {
         assertThat(response.getContentAsString(), containsString(EXPIRED_ACCESS_TOKEN.getCode()));
         assertThat(response.getContentAsString(), containsString(EXPIRED_ACCESS_TOKEN.getMessage()));
     }
-    
+
+    @Test
+    public void 잘못된_Subject_Email_을_검증한다 () throws Exception {
+        //given
+        tokenType = TokenType.ACCESS_TOKEN;
+        token = JwtUtils.jwtTokenBuilder(email, tokenType, now());
+
+        requestBody.put("email", email.getEmail());
+        requestBody.put("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOjE2NDMzNTgxODksImV4cCI6MTY3NDg5NDE4OSwiYXVkIjoiIiwic3ViIjoidGVzdGVyMTIzQHBpdHRlci5jb20ifQ.8c6Dq3-4LrhYnEI_Gc7DA1ZrKrqN34OWQ9LZIWswfs0");
+        requestBody.put("tokenType", tokenType.getKey());
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(post("/oauth/token")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse();
+        //then
+        assertThat(response.getContentAsString(), containsString(INVALID_SUBJECT_EMAIL.getCode()));
+        assertThat(response.getContentAsString(), containsString(INVALID_SUBJECT_EMAIL.getMessage()));
+    }
+
     @Test
     public void 잘못된_SignatureKey를_검증한다 () throws Exception {
         //given
-        
-                
-        //when
-        
-                
-        //then
-        
+        tokenType = TokenType.ACCESS_TOKEN;
+        token = JwtUtils.jwtTokenBuilder(email, tokenType, now());
 
+        requestBody.put("email", email.getEmail());
+        requestBody.put("token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOjE2NDMzNTgxODksImV4cCI6MTY3NDg5NDE4OSwiYXVkIjoiIiwic3ViIjoidGVzdGVyQHBpdHRlci5jb20ifQ.nNXoXC2M-8Gn9b5PGViyp8KgJ6C88xSldunmJklR0ds");
+        requestBody.put("tokenType", tokenType.getKey());
+
+        //when
+        MockHttpServletResponse response = mockMvc.perform(post("/oauth/token")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(requestBody)))
+                .andExpect(status().isBadRequest())
+                .andReturn()
+                .getResponse();
+        //then
+        assertThat(response.getContentAsString(), containsString(INVALID_SIGNATURE.getCode()));
+        assertThat(response.getContentAsString(), containsString(INVALID_SIGNATURE.getMessage()));
     }   
 
     @Test
