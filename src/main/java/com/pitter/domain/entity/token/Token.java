@@ -47,7 +47,8 @@ public class Token extends BaseEntity implements Serializable {
         System.out.println("from Date:"+now.getTime());
         return new Token(
                 member,
-                new InternalApiRequestToken(member.getEmail(),TokenType.REFRESH_TOKEN, jwtTokenBuilder(member.getEmail(), TokenType.REFRESH_TOKEN, now)),
+                //new InternalApiRequestToken(member.getEmail(),TokenType.REFRESH_TOKEN, jwtTokenBuilder(member.getEmail(), TokenType.REFRESH_TOKEN, now)),
+                new InternalApiRequestToken(member.getEmail(),TokenType.REFRESH_TOKEN, null),
                 socialLoginToken
         );
     }

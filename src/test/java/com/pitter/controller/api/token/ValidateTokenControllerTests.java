@@ -9,8 +9,7 @@ import com.pitter.domain.entity.member.NickName;
 import com.pitter.domain.entity.member.Role;
 import com.pitter.domain.entity.token.*;
 import com.pitter.domain.repository.member.MemberRepository;
-import com.pitter.domain.repository.token.TokenRepository;
-import io.jsonwebtoken.JwtException;
+import com.pitter.domain.repository.token.RefreshTokenRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,7 +50,7 @@ public class ValidateTokenControllerTests {
 
     @Autowired WebApplicationContext context;
 
-    @Autowired private TokenRepository tokenRepository;
+    @Autowired private RefreshTokenRepository tokenRepository;
 
     @Autowired private MemberRepository memberRepository;
 

@@ -5,6 +5,7 @@ import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.member.NickName;
 import com.pitter.domain.entity.member.Role;
+import com.pitter.domain.entity.token.RefreshToken;
 import com.pitter.domain.entity.token.SocialLoginToken;
 import com.pitter.domain.entity.token.SocialProvider;
 import com.pitter.domain.entity.token.Token;
@@ -16,8 +17,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.NoSuchElementException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -27,7 +26,7 @@ public class TokenRepositoryTests {
 
     @Autowired private MemberRepository memberRepository;
 
-    @Autowired private TokenRepository tokenRepository;
+    @Autowired private RefreshTokenRepository tokenRepository;
 
     @Test
     public void Member를_사용하여_토큰을_조회한다() throws Exception {
@@ -57,7 +56,7 @@ public class TokenRepositoryTests {
         tokenRepository.saveAndFlush(token);
 
         //when
-        Token findToken = tokenRepository.findByEmail(email)
+        RefreshToken findToken = tokenRepository.findByEmail(email)
                 .orElseThrow(UnIdentifiedRefreshTokenException::new);
 
         //then

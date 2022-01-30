@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,9 +25,8 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public Member findByEmail(Email email) {
-        return memberRepository.findByEmail(email)
-                .orElseThrow(NoSuchElementException::new);
+    public Optional<Member> findByEmail(Email email) {
+        return memberRepository.findByEmail(email);
     }
 
     public boolean isDuplicateNickName(NickName nickName) {

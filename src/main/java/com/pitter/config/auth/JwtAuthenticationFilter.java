@@ -1,7 +1,9 @@
 package com.pitter.config.auth;
 
 import com.pitter.domain.entity.member.Member;
+import com.pitter.domain.entity.token.InternalApiRequestToken;
 import com.pitter.service.MemberService;
+import com.pitter.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,29 +22,18 @@ import java.util.Arrays;
 public class JwtAuthenticationFilter extends GenericFilterBean {
 
     private final MemberService memberService;
+    private final TokenService tokenService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = ((HttpServletRequest)request).getHeader("Authorization");
-
-        if(token != null){
-            //유효한 access token 이니?
-
-            //기간이 만료된 access token 이니?
-
-            //유효한 refresh token 이니?
-
-            //기간이 만료된 refresh token 이니/
-
-
-        }
-
-
+//        String token =
+//        tokenService.validate(new InternalApiRequestToken());
 /*        if(token != null && tokenService.verifyToken(token)) {
             String email = tokenService.getEmail(token);
             Member member = memberService.findByEmail(email);
 
-            Authentication authentication = getAuthentication(member);
+            Authxentication authentication = getAuthentication(member);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }*/
         chain.doFilter(request, response);
