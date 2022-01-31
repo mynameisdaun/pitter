@@ -1,6 +1,5 @@
 package com.pitter.domain.entity.token;
 
-import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,6 +8,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -41,7 +41,19 @@ public class RefreshToken {
     }
 
     public RefreshToken createRefreshToken(Member member) {
-        return new RefreshToken(member, UUID.randomUUID().toString(), now().toInstant().plusMillis(refreshTokenPeriod). );
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, Math.toIntExact(refreshTokenPeriod));
+        return new RefreshToken(
+                member,
+                UUID.randomUUID().toString(),
+                calendar.getTime()
+        );
     }
 
+    public boolean verifyExpiration(RefreshToken token) {
+        if (token.getExpiryDate().compareTo(now()) < 0) {
+            return true;
+        }
+        return false;
+    }
 }

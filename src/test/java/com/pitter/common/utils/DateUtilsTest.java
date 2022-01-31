@@ -2,6 +2,7 @@ package com.pitter.common.utils;
 
 import org.junit.Test;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import static com.pitter.common.utils.DateUtils.*;
@@ -25,5 +26,18 @@ public class DateUtilsTest {
         //then
         //
         assertEquals(new Date(), now());
+        }
+
+        @Test
+        public void compareToTest() throws Exception {
+            //given
+            Calendar calendar1 = Calendar.getInstance();
+            Calendar calendar2 = Calendar.getInstance();
+            //calendar1.add(Calendar.SECOND, 0);
+
+            //when
+
+            //then
+            System.out.println(calendar1.compareTo(calendar1));
         }
 }
