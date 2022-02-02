@@ -1,12 +1,11 @@
 package com.pitter.domain.entity.token;
 
+import com.pitter.common.exception.TokenRefreshException;
 import com.pitter.domain.entity.member.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,8 +16,7 @@ import static com.pitter.common.utils.DateUtils.now;
 @Entity @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RefreshToken {
-    @Value("{com.pitter.refreshTokenPeriod}") @Transient
-    private Long refreshTokenPeriod;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,9 +38,9 @@ public class RefreshToken {
         this.expiryDate = expiryDate;
     }
 
-    public RefreshToken createRefreshToken(Member member) {
+    public static RefreshToken createRefreshToken(Member member, Long period) {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, Math.toIntExact(refreshTokenPeriod));
+        calendar.add(Calendar.SECOND, Math.toIntExact(period));
         return new RefreshToken(
                 member,
                 UUID.randomUUID().toString(),
@@ -50,10 +48,12 @@ public class RefreshToken {
         );
     }
 
-    public boolean verifyExpiration(RefreshToken token) {
-        if (token.getExpiryDate().compareTo(now()) < 0) {
-            return true;
+    public RefreshToken verifyExpiration() {
+        if(expiryDate.compareTo(now()) < 0) {
+            throw new TokenRefreshException("리프레쉬 토큰을 갱신할 수 없습니다. 다시 로그인 해 주세요.");
         }
-        return false;
+        this.token = UUID.randomUUID().toString();
+        return this;
     }
+
 }

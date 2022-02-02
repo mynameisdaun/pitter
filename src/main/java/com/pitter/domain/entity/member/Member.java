@@ -5,11 +5,16 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity @Getter
 @NoArgsConstructor
@@ -46,25 +51,10 @@ public class Member extends BaseEntity implements Serializable {
     }
 
     public static Member createMember(NickName nickName, Email email, String password) throws IllegalArgumentException {
-        validateEmail(email);
-        validateNickName(nickName);
-        return new Member(nickName, email, password, Role.GUEST);
+        return new Member(nickName, email, password, Role.USER);
     }
     public static Member createMember(NickName nickName, Email email, String password, Role role) {
-        validateEmail(email);
-        validateNickName(nickName);
         return new Member(nickName, email, password, role);
-    }
-
-    private static void validateEmail(Email email) {
-        if (email == null || email.isEmpty()) {
-            throw new IllegalArgumentException("이메일은 필수 값 입니다.");
-        }
-    }
-    private static void validateNickName(NickName nickName) {
-        if (nickName == null || nickName.isEmpty()) {
-            throw new IllegalArgumentException("이메일은 필수 값 입니다.");
-        }
     }
 
 }

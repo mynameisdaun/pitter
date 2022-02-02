@@ -1,5 +1,6 @@
 package com.pitter.config.auth;
 
+import com.pitter.common.utils.JwtUtils;
 import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.token.InternalApiRequestToken;
 import com.pitter.service.MemberService;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -20,26 +22,20 @@ import java.util.Arrays;
 
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends GenericFilterBean {
-
-    private final MemberService memberService;
-    private final TokenService tokenService;
+    private JwtUtils jwtUtils;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = ((HttpServletRequest)request).getHeader("Authorization");
-//        String token =
-//        tokenService.validate(new InternalApiRequestToken());
-/*        if(token != null && tokenService.verifyToken(token)) {
-            String email = tokenService.getEmail(token);
-            Member member = memberService.findByEmail(email);
 
-            Authxentication authentication = getAuthentication(member);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }*/
+        if (token != null && jwtUtils.validateToken(token)) {   // token 검증
+            Authentication auth = jwtUtils.getAuthentication(token);    // 인증 객체 생성
+            SecurityContextHolder.getContext().setAuthentication(auth); // SecurityContextHolder에 인증 객체 저장
+        }
         chain.doFilter(request, response);
     }
 
-    //TODO: 확실히 이상하다
+    //TODO: userDetailsService, userDetails를 사용하지 않고 처리하는 방법을 생각해 볼 것
     public Authentication getAuthentication(Member member) {
         return new UsernamePasswordAuthenticationToken(member, "",
                 Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));

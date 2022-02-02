@@ -1,12 +1,17 @@
 package com.pitter.common.utils;
 
+import com.pitter.config.auth.CustomUserDetailsService;
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.token.TokenType;
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -14,6 +19,7 @@ import java.util.Date;
 import static com.pitter.common.utils.DateUtils.now;
 
 @Component @Slf4j
+@RequiredArgsConstructor
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
@@ -22,6 +28,8 @@ public class JwtUtils {
 
     @Value("${com.pitter.jwtAccessTokenPeriod}")
     private Long jwtAccessTokenPeriod;
+
+    private final CustomUserDetailsService customUserDetailsService;
 
     public String jwtTokenBuilder(Email email, Date now) {
         Claims claims = Jwts.claims()
@@ -36,15 +44,7 @@ public class JwtUtils {
                 .compact();
     }
 
-    public String getEmailFromJwtToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(jwtSecretKey)
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
-    }
-
-    public boolean validateJwtToken(String token) {
+    public boolean validateToken(String token) {
         try {
             Jwts.parser()
                 .setSigningKey(jwtSecretKey)
@@ -64,7 +64,18 @@ public class JwtUtils {
         return false;
     }
 
-    private static boolean isAccessToken(TokenType tokenType) {
-        return tokenType==TokenType.ACCESS_TOKEN;
+    public Authentication getAuthentication(String token) {
+        String email = getEmailFromJwtToken(token);
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
+
+    private String getEmailFromJwtToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(jwtSecretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+
 }
