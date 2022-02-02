@@ -22,8 +22,9 @@ import static com.pitter.common.utils.DateUtils.now;
 @RequiredArgsConstructor
 @Transactional
 public class RefreshTokenService {
-    @Value("{com.pitter.refreshTokenPeriod}") @Transient
+    @Value("${com.pitter.refreshTokenPeriod}")
     private Long refreshTokenPeriod;
+
     private final RefreshTokenRepository refreshTokenRepository;
 
     public RefreshToken findByToken(String token) {

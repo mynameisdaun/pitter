@@ -1,10 +1,14 @@
 package com.pitter.controller.api.advice;
 
-import com.pitter.common.exception.*;
-import com.pitter.controller.dto.TokenCode;
+import com.pitter.common.exception.InvalidSubjectEmailException;
+import com.pitter.common.exception.TokenRefreshException;
+import com.pitter.common.exception.TokenTypeException;
+import com.pitter.common.exception.UnIdentifiedRefreshTokenException;
 import com.pitter.controller.dto.TokenValidateResponse;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +61,14 @@ public class TokenExceptionHandler {
                 .body(UNIDENTIFIED_REFRESH_TOKEN.toDto());
     }
 
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<TokenValidateResponse> handlerTokenRefreshException(final ExpiredJwtException e) {
+        log.error("handler Exception: {}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(EXPIRED_ACCESS_TOKEN.toDto());
+    }
+
     @ExceptionHandler(TokenRefreshException.class)
     public ResponseEntity<TokenValidateResponse> handlerTokenRefreshException(final TokenRefreshException e) {
         log.error("handler Exception: {}", e.getMessage());
@@ -65,6 +77,19 @@ public class TokenExceptionHandler {
                 .body(EXPIRED_REFRESH_TOKEN.toDto());
     }
 
+    @ExceptionHandler(MalformedJwtException.class)
+    public ResponseEntity<TokenValidateResponse> handlerTokenRefreshException(final MalformedJwtException e) {
+        log.error("handler Exception: {}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(INVALID_TOKEN_FORMAT.toDto());
+    }
 
-
+    @ExceptionHandler(UnsupportedJwtException.class)
+    public ResponseEntity<TokenValidateResponse> handlerTokenRefreshException(final UnsupportedJwtException e) {
+        log.error("handler Exception: {}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(INVALID_TOKEN_FORMAT.toDto());
+    }
 }

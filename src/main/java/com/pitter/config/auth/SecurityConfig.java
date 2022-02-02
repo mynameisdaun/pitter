@@ -1,5 +1,6 @@
 package com.pitter.config.auth;
 
+import com.pitter.common.utils.JwtUtils;
 import com.pitter.service.MemberService;
 import com.pitter.service.TokenService;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +18,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
-    private final MemberService memberService;
-    private final TokenService tokenService;
+    private final JwtUtils jwtUtils;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new JwtAuthenticationFilter(memberService, tokenService), UsernamePasswordAuthenticationFilter.class);
-
+        http.addFilterBefore(new JwtAuthenticationFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class);
         http
             .httpBasic()
         .and()
@@ -39,6 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/healthCheck")
 //                    .permitAll()
                 .antMatchers("/oauth/**")
+                    .permitAll()
+                .antMatchers("/sign_in/**")
                     .permitAll()
                 .anyRequest()
                     .authenticated()

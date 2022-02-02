@@ -1,7 +1,7 @@
 package com.pitter.service;
 
-import com.pitter.controller.dto.KakaoSignInResponse;
-import com.pitter.controller.dto.KakaoUserInfoResponse;
+import com.pitter.controller.dto.KakaoToken;
+import com.pitter.controller.dto.KakaoUserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -26,18 +26,18 @@ public class KakaoTokenService {
     private final String userInfoUri = "/v2/user/me";
 
 
-    public KakaoSignInResponse getAccessToken(String authorization_code) {
+    public KakaoToken getAccessToken(String authorization_code) {
         WebClient webClient = WebClient.builder()
                 .baseUrl(authDomain)
                 .build();
         return webClient.post()
                 .uri(getAccessTokenRequestUrl(authorization_code))
                 .retrieve()
-                .bodyToMono(KakaoSignInResponse.class)
+                .bodyToMono(KakaoToken.class)
                 .block();
     }
 
-    public KakaoUserInfoResponse getKakaoUserInfo(String accessToken) {
+    public KakaoUserInfo getKakaoUserInfo(String accessToken) {
         WebClient webClient = WebClient.builder()
                 .baseUrl(apiDomain)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -52,9 +52,9 @@ public class KakaoTokenService {
             System.out.println("key: "+x);
             System.out.println("value: "+result.get(x));
         }
-        KakaoUserInfoResponse kakaoUserInfoResponse = new KakaoUserInfoResponse(result);
-        System.out.println(kakaoUserInfoResponse);
-        return kakaoUserInfoResponse;
+        KakaoUserInfo kakaoUserInfo = new KakaoUserInfo(result);
+        System.out.println(kakaoUserInfo);
+        return kakaoUserInfo;
     }
 
     private String getAccessTokenRequestUrl(String authorization_code) {

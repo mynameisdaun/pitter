@@ -22,20 +22,19 @@ import java.util.Arrays;
 
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends GenericFilterBean {
-    private JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = ((HttpServletRequest)request).getHeader("Authorization");
-
-        if (token != null && jwtUtils.validateToken(token)) {   // token 검증
-            Authentication auth = jwtUtils.getAuthentication(token);    // 인증 객체 생성
-            SecurityContextHolder.getContext().setAuthentication(auth); // SecurityContextHolder에 인증 객체 저장
+        if (token != null && jwtUtils.validateToken(token)) {
+            Authentication auth = jwtUtils.getAuthentication(token);
+            SecurityContextHolder.getContext().setAuthentication(auth);
         }
         chain.doFilter(request, response);
     }
 
-    //TODO: userDetailsService, userDetails를 사용하지 않고 처리하는 방법을 생각해 볼 것
+    //TODO: userDetailsService, userDetails를 사용하지 않고 처리하는 방법을 생각해 볼 것, oAuthUser로 한번에 처리하는것...
     public Authentication getAuthentication(Member member) {
         return new UsernamePasswordAuthenticationToken(member, "",
                 Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));

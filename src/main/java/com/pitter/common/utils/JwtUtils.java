@@ -45,23 +45,10 @@ public class JwtUtils {
     }
 
     public boolean validateToken(String token) {
-        try {
             Jwts.parser()
                 .setSigningKey(jwtSecretKey)
                 .parseClaimsJws(token);
             return true;
-        } catch (SignatureException ex) {
-            log.error("Invalid JWT signature");
-        } catch (MalformedJwtException ex) {
-            log.error("Invalid JWT token");
-        } catch (ExpiredJwtException ex) {
-            log.error("Expired JWT token");
-        } catch (UnsupportedJwtException ex) {
-            log.error("Unsupported JWT token");
-        } catch (IllegalArgumentException ex) {
-            log.error("JWT claims string is empty.");
-        }
-        return false;
     }
 
     public Authentication getAuthentication(String token) {

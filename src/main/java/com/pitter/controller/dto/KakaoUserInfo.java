@@ -11,12 +11,12 @@ import java.util.Map;
 import static org.apache.commons.lang3.StringUtils.*;
 
 @Getter @ToString
-public class KakaoUserInfoResponse {
+public class KakaoUserInfo {
     private NickName nickname;
     private String profileImageUrl;
     private Email email;
 
-    public KakaoUserInfoResponse(final Map<String, Object> userInfoResponse) {
+    public KakaoUserInfo(final Map<String, Object> userInfoResponse) {
         Map<String, Object> kakaoAccount = (Map<String, Object>) userInfoResponse.get("kakao_account");
         Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
         this.email = new Email((String) kakaoAccount.get("email"));

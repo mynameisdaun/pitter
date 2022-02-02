@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class KakaoSignInResponse {
+public class KakaoToken {
     private String token_type;
     private String access_token;
     private Integer expires_in;

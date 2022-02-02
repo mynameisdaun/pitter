@@ -1,21 +1,22 @@
 package com.pitter.controller.api.token;
 
 import com.pitter.common.utils.JwtUtils;
-import com.pitter.controller.dto.KakaoSignInResponse;
-import com.pitter.controller.dto.KakaoUserInfoResponse;
+import com.pitter.controller.dto.KakaoToken;
+import com.pitter.controller.dto.KakaoUserInfo;
 import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.token.RefreshToken;
 import com.pitter.service.KakaoTokenService;
 import com.pitter.service.MemberService;
 import com.pitter.service.RefreshTokenService;
-import com.pitter.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,9 @@ import java.net.URLEncoder;
 import static com.pitter.common.utils.DateUtils.now;
 
 @RestController
+@RequestMapping("/sign_in")
 @RequiredArgsConstructor
+@Transactional
 public class SocialSignInController {
     private final static Logger logger = LoggerFactory.getLogger(SocialSignInController.class);
     private final JwtUtils jwtUtils;
@@ -34,35 +37,38 @@ public class SocialSignInController {
     private final KakaoTokenService kakaoTokenService;
     private final MemberService memberService;
 
-    @GetMapping("/sign_in/kakao")
+    @GetMapping("/kakao")
     public ResponseEntity<Void> kakaoSignIn(HttpServletRequest request, HttpServletRequest response,
                                             @RequestParam("code") String authorization_code) throws UnsupportedEncodingException {
-        KakaoSignInResponse kakaoAccessToken = kakaoTokenService.getAccessToken(authorization_code);
-        KakaoUserInfoResponse kakaoUserInfoResponse = kakaoTokenService.getKakaoUserInfo(kakaoAccessToken.getAccess_token());
+        KakaoToken kakaoToken = kakaoTokenService.getAccessToken(authorization_code);
+        KakaoUserInfo kakaoUserInfo = kakaoTokenService.getKakaoUserInfo(kakaoToken.getAccess_token());
 
-        Member findMember = memberService.findByEmail(kakaoUserInfoResponse.getEmail())
-                .orElse(memberService.join(kakaoUserInfoResponse.toMember()));
-        String jwt = jwtUtils.jwtTokenBuilder(findMember.getEmail(), now());
+        Member findMember = memberService.findByEmail(kakaoUserInfo.getEmail())
+                .orElseGet( ()-> memberService.join(kakaoUserInfo.toMember()));
+
+        String accessToken = jwtUtils.jwtTokenBuilder(findMember.getEmail(), now());
         RefreshToken refreshToken = refreshTokenService.createToken(findMember);
 
-        String location = setLocation(kakaoUserInfoResponse, jwt, refreshToken);
+        String location = setLocation(kakaoUserInfo, accessToken, refreshToken);
+        logger.info("{}:{}","location: ",location);
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header(HttpHeaders.LOCATION, location)
                 .build();
     }
 
-    private String setLocation(KakaoUserInfoResponse kakaoUserInfoResponse, String jwt, RefreshToken refreshToken) throws UnsupportedEncodingException {
-        StringBuilder sb = new StringBuilder("webauthcallback://success?");
+    private String setLocation(KakaoUserInfo kakaoUserInfo, String accessToken, RefreshToken refreshToken) throws UnsupportedEncodingException {
+        StringBuilder sb = new StringBuilder();
         String location = sb.append("accessToken=")
-                    .append(jwt)
+                    .append(accessToken)
                 .append("&refreshToken=")
                     .append(refreshToken.getToken())
                 .append("&nickName=")
-                    .append(kakaoUserInfoResponse.getNickname())
+                    .append(kakaoUserInfo.getNickname().getNickName())
                 .append("&email=")
-                    .append(kakaoUserInfoResponse.getEmail())
+                    .append(kakaoUserInfo.getEmail().getEmail())
                 .append("&profileImageUrl=")
-                    .append(kakaoUserInfoResponse.getProfileImageUrl()).toString();
-        return  URLEncoder.encode(location, "UTF-8");
+                    .append(kakaoUserInfo.getProfileImageUrl()).toString();
+        String encodedUrl = URLEncoder.encode(location, "UTF-8");
+        return "webauthcallback://success?"+encodedUrl;
     }
 }
