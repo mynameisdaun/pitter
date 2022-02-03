@@ -4,13 +4,17 @@ import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.Member;
 import com.pitter.domain.entity.member.NickName;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
-@Getter @ToString
+@NoArgsConstructor
+@Getter @Setter
+@ToString
 public class KakaoUserInfo {
     private NickName nickname;
     private String profileImageUrl;

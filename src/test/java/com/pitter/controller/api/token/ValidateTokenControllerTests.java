@@ -2,22 +2,16 @@ package com.pitter.controller.api.token;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
-import com.pitter.common.utils.JwtUtils;
 import com.pitter.domain.entity.member.Email;
 import com.pitter.domain.entity.member.Member;
-import com.pitter.domain.entity.member.NickName;
-import com.pitter.domain.entity.member.Role;
-import com.pitter.domain.entity.token.*;
+import com.pitter.domain.entity.token.TokenType;
 import com.pitter.domain.repository.member.MemberRepository;
 import com.pitter.domain.repository.token.RefreshTokenRepository;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -27,14 +21,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import java.util.Map;
 
-import static com.pitter.common.utils.DateUtils.now;
-import static com.pitter.common.utils.DateUtils.oneMonthBefore;
-import static com.pitter.controller.dto.TokenCode.*;
-import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {"classpath:/application.properties","classpath:/application-oauth.properties"})
@@ -68,18 +55,6 @@ public class ValidateTokenControllerTests {
                 .build();
         requestBody = Maps.newHashMap();
         email = new Email("tester@pitter.com");
-    }
-
-    @Test
-    public void hi() throws Exception {
-        //given
-
-
-        //when
-
-
-        //then
-
     }
 
 //    @Test

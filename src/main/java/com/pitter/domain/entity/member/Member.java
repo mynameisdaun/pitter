@@ -33,15 +33,22 @@ public class Member extends BaseEntity implements Serializable {
     @Embedded
     private Email email;
 
-    @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
-    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,20}",
-             message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.")
+    //TODO: 비밀번호를 어떻게 처리하면 좋을까..
+    //    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,20}",
+    //    message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.")
     @ToString.Exclude
     private transient String password;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = " varchar(20) default 'GUEST' ")
     private Role role;
+
+    private String profileImageUrl;
+
+    //TODO: 프로파일 이미지 어떻게 처리하면 좋을지 생각해보자.
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl=profileImageUrl;
+    }
 
     private Member(NickName nickName, Email email, String password, Role role) {
         this.nickName = nickName;
@@ -56,5 +63,4 @@ public class Member extends BaseEntity implements Serializable {
     public static Member createMember(NickName nickName, Email email, String password, Role role) {
         return new Member(nickName, email, password, role);
     }
-
 }

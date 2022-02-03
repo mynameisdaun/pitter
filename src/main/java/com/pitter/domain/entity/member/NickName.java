@@ -18,9 +18,6 @@ public class NickName {
         if(Strings.isNullOrEmpty(nickName)) {
             throw new IllegalArgumentException("닉네임은 필수 입력 값 입니다.");
         }
-        if( nickName.length() < 2 || nickName.length() > 10 ) {
-            throw new IllegalArgumentException("닉네임은 2글자 ~ 10글자 사이어야 합니다.");
-        }
         this.nickName = nickName;
     }
 

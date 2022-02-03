@@ -57,7 +57,7 @@ public class KakaoTokenService {
         return kakaoUserInfo;
     }
 
-    private String getAccessTokenRequestUrl(String authorization_code) {
+    public String getAccessTokenRequestUrl(String authorization_code) {
         StringBuilder sb = new StringBuilder(accessTokenUri);
         sb.append("?grant_type=")
                 .append("authorization_code")

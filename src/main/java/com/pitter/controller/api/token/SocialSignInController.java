@@ -29,7 +29,6 @@ import static com.pitter.common.utils.DateUtils.now;
 @RestController
 @RequestMapping("/sign_in")
 @RequiredArgsConstructor
-@Transactional
 public class SocialSignInController {
     private final static Logger logger = LoggerFactory.getLogger(SocialSignInController.class);
     private final JwtUtils jwtUtils;
@@ -46,28 +45,33 @@ public class SocialSignInController {
         Member findMember = memberService.findByEmail(kakaoUserInfo.getEmail())
                 .orElseGet( ()-> memberService.join(kakaoUserInfo.toMember()));
 
+        findMember.setProfileImageUrl(kakaoUserInfo.getProfileImageUrl());
+
         String accessToken = jwtUtils.jwtTokenBuilder(findMember.getEmail(), now());
         RefreshToken refreshToken = refreshTokenService.createToken(findMember);
 
-        String location = setLocation(kakaoUserInfo, accessToken, refreshToken);
-        logger.info("{}:{}","location: ",location);
+        String location = setLocation(findMember, accessToken, refreshToken);
+        logger.info("{}:{}","location",location);
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header(HttpHeaders.LOCATION, location)
                 .build();
     }
 
-    private String setLocation(KakaoUserInfo kakaoUserInfo, String accessToken, RefreshToken refreshToken) throws UnsupportedEncodingException {
+    private String setLocation(Member findMember, String accessToken, RefreshToken refreshToken) throws UnsupportedEncodingException {
         StringBuilder sb = new StringBuilder();
-        String location = sb.append("accessToken=")
+        String location =
+                sb.append("id=")
+                        .append(findMember.getId())
+                .append("&accessToken=")
                     .append(accessToken)
                 .append("&refreshToken=")
                     .append(refreshToken.getToken())
                 .append("&nickName=")
-                    .append(kakaoUserInfo.getNickname().getNickName())
+                    .append(findMember.getNickName().getNickName())
                 .append("&email=")
-                    .append(kakaoUserInfo.getEmail().getEmail())
+                    .append(findMember.getEmail().getEmail())
                 .append("&profileImageUrl=")
-                    .append(kakaoUserInfo.getProfileImageUrl()).toString();
+                    .append(findMember.getProfileImageUrl()).toString();
         String encodedUrl = URLEncoder.encode(location, "UTF-8");
         return "webauthcallback://success?"+encodedUrl;
     }
