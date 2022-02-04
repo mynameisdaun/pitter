@@ -70,7 +70,7 @@ public class SocialSignInController {
                     .append(findMember.getNickName().getNickName())
                 .append("&email=")
                     .append(findMember.getEmail().getEmail())
-                .append("&profileImageUrl=")
+                .append("&profileImageUrl=")//
                     .append(findMember.getProfileImageUrl()).toString();
         String encodedUrl = URLEncoder.encode(location, "UTF-8");
         return "webauthcallback://success?"+encodedUrl;
