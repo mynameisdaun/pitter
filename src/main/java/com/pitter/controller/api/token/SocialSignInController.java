@@ -62,7 +62,7 @@ public class SocialSignInController {
         String location =
                 sb.append("id=")
                         .append(findMember.getId())
-                .append("&accessToken=")
+                .append("&accessToken=")//
                     .append(accessToken)
                 .append("&refreshToken=")
                     .append(refreshToken.getToken())
