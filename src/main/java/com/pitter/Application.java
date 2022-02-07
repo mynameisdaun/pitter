@@ -41,6 +41,4 @@ public class Application {
         registrationBean.setFilter(characterEncodingFilter);
         return registrationBean;
     }
-
-    
 }
