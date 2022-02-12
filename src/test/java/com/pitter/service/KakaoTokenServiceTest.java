@@ -77,7 +77,7 @@ public class KakaoTokenServiceTest {
         kakaoUserInfo.setProfileImageUrl("http://k.kakaocdn.net/dn/fjsodfijewf/sfjwofijwsefiowjfosdjifsdfsf/img_640x640.jpg");
     }
 
-    @Test
+    @Test//
     public void OAuthTokenTest() throws JsonProcessingException {
         //given
         String auth_code = "fake_auth_code1234";
