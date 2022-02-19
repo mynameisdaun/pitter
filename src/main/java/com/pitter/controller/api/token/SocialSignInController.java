@@ -28,7 +28,7 @@ import static com.pitter.common.utils.DateUtils.now;
 
 @RestController
 @RequestMapping("/sign_in")
-@RequiredArgsConstructor
+@RequiredArgsConstructor//
 public class SocialSignInController {
     private final static Logger logger = LoggerFactory.getLogger(SocialSignInController.class);
     private final JwtUtils jwtUtils;
