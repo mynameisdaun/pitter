@@ -36,7 +36,7 @@ public class SocialSignInController {
     private final KakaoTokenService kakaoTokenService;
     private final MemberService memberService;
 
-    @GetMapping("/kakao")///////
+    @GetMapping("/kakao")////////
     public ResponseEntity<Void> kakaoSignIn(HttpServletRequest request, HttpServletRequest response,
                                             @RequestParam("code") String authorization_code) throws UnsupportedEncodingException {
         KakaoToken kakaoToken = kakaoTokenService.getAccessToken(authorization_code);
